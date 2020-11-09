@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Задача 1</title>
+	<link rel="icon" href="img/logo.jpg" type="image">
+
+</head>
+<body>
+
+
+
+	<div class = "test" onclick="rotate()">
+	<div class="card__side front green">
+		<h2>Задача 1. "Только день не повторится..."</h2>
+		Условие: создайте html-файл (кодировка utf-8) с заголовком "Задача 1", результат которого показан на рисунке.
+		Используйте подходящий тег заголовков <a href="dictionary.html#h1">(&lt;h1&gt;-&lt;h6&gt;)</a>, теги <a href="dictionary.html#br">&lt;br&gt;</a>, <a href="dictionary.html#p">&lt;p&gt;</a>, <a href="dictionary.html#i">&lt;i&gt;</a>, <a href="dictionary.html#em">&lt;em&gt;</a>, <a href="dictionary.html#strong">&lt;strong&gt;</a>, <a href="dictionary.html#b">&lt;b&gt;</a> (необязательно все перечисленные). Выясните различие тегов &lt;b&gt; и &lt;strong&gt;, тегов &lt;i&gt; и &lt;em&gt;. В html-код добавьте комментарии: дату решения данной задачи и ФИО
+		<br>
+		<br>
+		<img src="/img/without_css/task-1.png" alt="task-1"><br>
+	</div>
+
+<!--<h1 align="center">***</h1><br>-->
+
+	<div class = "card__side decision green">
+		<h1>Стихотворение</h1>
+		<p>Мириады маленьких дел<br>
+		Пьют по капле гаснущий день,<br>
+		А <i>дела большие</i> сушит жажда.<br>
+		Оставляя все на "потом",<br>
+		Прозреваем задним числом,<br>
+		Только день <b>не повторится</b> дважды.<br><br>
+		И.Тальков
+		</p>
+		<br> 08/07/2020
+	</div>
+
+	</div>
+
+	<a href="/index.html">	&lArr; Назад</a>
+
+
+
+</body>
+</html>
+
+<style>
+	.test{
+		position: relative;
+		perspective: 3000px;
+
+		width: 900px;
+		height: 600px;
+		box-sizing: content-box;
+		margin: 20px auto;
+
+		font-family: serif;
+		font-size: 1.4em;
+		user-select: none;
+	}
+
+	a, a:link, a:visited, a:active{
+		text-decoration: none;
+
+		color: rgba(14, 14, 144, 1);
+		font-family: serif;
+		font-size: 1.4rem;
+		font-weight: 600;
+	}
+
+	.card__side{
+		position: absolute;
+
+		top: 0;
+		left: 0;
+
+		width: 100%;
+		height: 100%;
+
+		padding: 20px;
+
+		box-sizing: border-box;
+
+		backface-visibility: hidden;
+		box-shadow: 2px 0 6px rgba(14, 14, 14, .4);
+		border-radius: 20px;
+		border: 1px solid rgba(14, 14, 14, .2);
+
+		filter: blur(.2);
+
+		transition: 1s;
+
+	}
+
+	.front{
+
+	}
+
+	.decision{
+		transform: rotateY(180deg);
+	}
+
+	.green{
+		background: linear-gradient(to top right, #00ff00 0%, #00ffff 100%);
+		color: rgba(14, 14, 14, 1);
+
+	}
+
+</style>
+
+
+
+
+<script>
+	var front = document.querySelector(".front");
+	var decision = document.querySelector(".decision");
+	var degF = 0,
+		degD = 180
+	var rotate = function(){
+		degF += 180;
+		degD += 180;
+		front.style.transform = 'rotateY(' + degF + 'deg)';
+		decision.style.transform = 'rotateY(' + degD + 'deg)';
+	}
+</script>
