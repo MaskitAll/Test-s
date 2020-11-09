@@ -10,7 +10,7 @@ new Vue({
 		arrow: ["&uArr;", "&dArr;"],
 
 		showFooter: 0,
-		showBurgermenu: 0,
+		showBurgermenu: 1,
 		labelShow: 0,
 
 		htmlWithoutStyles: [

@@ -29,7 +29,7 @@
 
 		<nav class="header__nav">
 			<div class="burger" v-on:click="showBurgermenu ? showBurgermenu = 0 : showBurgermenu = 1"></div>
-			<div class="nav__links" v-if="showBurgermenu">
+			<div class="nav__links">
 				<a href="#">Подробнее</a>
 				<a href="#">Примеры</a>
 				<a href="#">Магазин</a>
@@ -81,7 +81,7 @@
 
    		<div class="footer__container">
 			<div class="footer__col">Контакты
-				<ul  v-show="showFooter">
+				<ul>
 					<li><a href="https://vk.com/id321329438">vk</a></li>
 					<li><a href="#">inst</a></li>
 					<li><a href="#">twitter</a></li>
@@ -89,7 +89,7 @@
 			</div>
 
 			<div class="footer__col">Разделы
-				<ul  v-show="showFooter">
+				<ul>
 					<li><a href="index.html">Главная</a></li>
 					<li><a href="#">Содержание</a></li>
 					<li><a href="pages/dictionary.html">Словарь</a></li>
@@ -97,7 +97,7 @@
 				</ul>
 			</div>
 			<div class="footer__col"> Интересные проекты
-				<ul  v-show="showFooter">
+				<ul>
 					<li><a href="html/other/maket-2.html">maket 1.2</a></li>
 					<li><a href="/pages/raki.html">Raki</a></li>
 					<li>.</li>
