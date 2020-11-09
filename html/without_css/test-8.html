@@ -1,28 +1,49 @@
-<link rel="stylesheet" type="text/css" href="../css/main.css">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
 
-<div class = "test green">
-	<h2 style="margin-left: 40px">Задача 8. "Код"</h2>
-	Условие: Создайте html-файл, результат которого показан на рисунке. Используйте тег <a href="">&lt;code&gt;</a> и &#38;nbsp;
-	<br>
-<img src="../img/task-8.png" alt="task-8"><br>
+	<title>Задача 8</title>
+	<link rel="icon" href="img/logo.jpg" type="image">
 
-<h1 align="center">***</h1><br>
+	<link rel="stylesheet" href="/css/test.css">
 
-<div class = "decision" style="margin-left: 20%; width: 80%;">
-	<h1>Код программы</h1>
-	<code>
-	<br>for (int i=0; i &lt; 10; i++)
-	<br>{
-	<br>&nbsp;cout&lt;&lt;i&lt;&lt;endl;
-	<br>&nbsp;if (i==5)
-	<br>&nbsp;&nbsp;&nbsp;break; // прекращение цикла
-	<br>}
-	</code>
-	<hr >
-	<cite>@www.itmathrepetitor.ru</cite>
+</head>
+<body>
 
-	<br> 14/07/2020
-</div>
-	<a href="content.html"><h3>&lt;- Назад</h3></a>
 
-</div>
+
+	<div class = "test" onclick="rotate()">
+		<div class = "card__side front green">
+
+			<h2>Задача 8. "Код"</h2>
+			Условие: Создайте html-файл, результат которого показан на рисунке. Используйте тег <a href="">&lt;code&gt;</a> и &#38;nbsp;
+			<br>
+			<img src="/img/without_css/task-8.png" alt="task-8"><br>
+
+		</div>
+		<div class = "card__side decision green">
+
+			<h1>Код программы</h1>
+			<code>
+			<br>for (int i=0; i &lt; 10; i++)
+			<br>{
+			<br>&nbsp;cout&lt;&lt;i&lt;&lt;endl;
+			<br>&nbsp;if (i==5)
+			<br>&nbsp;&nbsp;&nbsp;break; // прекращение цикла
+			<br>}
+			</code>
+			<hr >
+			<cite>@www.itmathrepetitor.ru</cite>
+
+			<br> 14/07/2020
+
+		</div>
+	</div>
+
+	<a href="/index.html">&lArr; Назад</a>
+
+</body>
+</html>
+
+<script src="/js/card.js"></script>

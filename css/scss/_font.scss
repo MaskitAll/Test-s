@@ -9,12 +9,13 @@ $color_back: #fff;
 $color_back-dark: rgb(26, 20, 48);
 $color_back-bee: rgb(255, 255, 0);
 
+$color_with_love: #b00b69;
 
 /*MIXINs*/
 
 @mixin theme($theme: inherit){
 	@if $theme == light{
-		background-color: $color_back;
+		background-color: $	color_back;
 		color: $color_font;
 	}
 
