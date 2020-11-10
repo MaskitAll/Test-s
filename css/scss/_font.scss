@@ -15,7 +15,7 @@ $color_with_love: #b00b69;
 
 @mixin theme($theme: inherit){
 	@if $theme == light{
-		background-color: $	color_back;
+		background-color: $color_back;
 		color: $color_font;
 	}
 

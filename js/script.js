@@ -13,93 +13,137 @@ new Vue({
 		showBurgermenu: 1,
 		labelShow: 0,
 
+
 		htmlWithoutStyles: [
 			{
 				id: 1,
 				name: "Только день не повторится...",
 				link: "/html/without_css/test-1.html",
 				dificult: "green",
+				task: "/html/without_css/task-1.html",
+				decision: "/html/without_css/decision-1.html",
+				isShow: false,
 			},
 			{
 				id: 2,
 				name: "Заповедь",
 				link: "/html/without_css/test-2.html",
 				dificult: "green",
+				task: "/html/without_css/task-2.html",
+				decision: "/html/without_css/decision-2.html",
+				isShow: false,
 			},
 			{
 				id: 3,
 				name: "Silence is golden",
 				link: "/html/without_css/test-3.html",
 				dificult: "green",
+				task: "/html/without_css/task-3.html",
+				decision: "/html/without_css/decision-3.html",
+				isShow: false,
 			},
 			{
 				id: 4,
 				name: "Проект",
 				link: "/html/without_css/test-4.html",
 				dificult: "green",
+				task: "/html/without_css/task-4.html",
+				decision: "/html/without_css/decision-4.html",
+				isShow: false,
 			},
 			{
 				id: 5,
 				name: "Статьи",
 				link: "/html/without_css/test-5.html",
 				dificult: "green",
+				task: "/html/without_css/task-5.html",
+				decision: "/html/without_css/decision-5.html",
+				isShow: false,
 			},
 			{
 				id: 6,
 				name: "Генераторы",
 				link: "/html/without_css/test-6.html",
 				dificult: "green",
+				task: "/html/without_css/task-6.html",
+				decision: "/html/without_css/decision-6.html",
+				isShow: false,
 			},
 			{
 				id: 7,
 				name: "Время",
 				link: "/html/without_css/test-7.html",
 				dificult: "green",
+				task: "/html/without_css/task-7.html",
+				decision: "/html/without_css/decision-7.html",
+				isShow: false,
 			},
 			{
 				id: 8,
 				name: "Код",
 				link: "/html/without_css/test-8.html",
 				dificult: "green",
+				task: "/html/without_css/task-8.html",
+				decision: "/html/without_css/decision-8.html",
+				isShow: false,
 			},
 			{
 				id: 9,
 				name: "Волшебные формулы",
 				link: "/html/without_css/test-9.html",
 				dificult: "green",
+				task: "/html/without_css/task-9.html",
+				decision: "/html/without_css/decision-9.html",
+				isShow: false,
 			},
 			{
 				id: 10,
 				name: "Странные буквы",
 				link: "/html/without_css/test-10.html",
 				dificult: "green",
+				task: "/html/without_css/task-10.html",
+				decision: "/html/without_css/decision-10.html",
+				isShow: false,
 			},
 			{
 				id: 11,
 				name: "Химические элементы",
 				link: "/html/without_css/test-11.html",
-				dificult: "green",
+				dificult: "yellow",
+				task: "/html/without_css/task-11.html",
+				decision: "/html/without_css/decision-11.html",
+				isShow: false,
 			},
 			{
 				id: 12,
 				name: "Карта сокровищ",
 				link: "/html/without_css/test-12.html",
-				dificult: "green",
+				dificult: "yellow",
+				task: "/html/without_css/task-12.html",
+				decision: "/html/without_css/decision-12.html",
+				isShow: false,
 			},
 			{
 				id: 13,
 				name: "Запись на курсы",
 				link: "/html/without_css/test-13.html",
-				dificult: "green",
+				dificult: "yellow",
+				task: "/html/without_css/task-13.html",
+				decision: "/html/without_css/decision-13.html",
+				isShow: false,
 			},
 			{
 				id: 14,
 				name: "Простое тестовое",
 				link: "/html/without_css/test-14.html",
-				dificult: "green",
+				dificult: "red",
+				task: "/html/without_css/task-14html",
+				decision: "/html/without_css/decision-14.html",
 			},
 
 		],
+
+
 
 		htmlWithStyles: [
 			{
@@ -370,15 +414,70 @@ new Vue({
 //				}
 //			},
 
-			show: function(){
-				console.log(footerLabel);
-				console.log(this.labelShow);
-
+			show: function(id){
+				this.htmlWithoutStyles = this.htmlWithoutStyles.map(card => {
+					if(card.id === id){ card.isShow = !card.isShow; }
+					else { card.isShow = false}
+					return card;
+				});
 			},
-
-
 		}
 });
+
+/*************************************************
+ФУНКЦИЯ НАБЛЮДЕНИЯ ЗА DOM В MAIN
+**************************************************/
+
+let observer = new MutationObserver(mutationRecords => {
+  	//console.log(mutationRecords); // console.log(изменения)
+	includeHTML();
+});
+
+// наблюдать за всем, кроме атрибутов
+observer.observe(main, {
+  childList: true, // наблюдать за непосредственными детьми
+  subtree: true, // и более глубокими потомками
+  characterDataOldValue: true // передавать старое значение в колбэк
+});
+
+
+/*************************************************
+ФУНКЦИЯ ПОДКЛЮЧЕНИЯ ДОП. СТРАНИЦ HTML
+**************************************************/
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  /*loop through a collection of all HTML elements:*/
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+	elmnt = z[i];
+	/*search for elements with a certain atrribute:*/
+	file = elmnt.getAttribute("maskit-include-html");
+	if (file) {
+	  /*make an HTTP request using the attribute value as the file name:*/
+	  xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() {
+		if (this.readyState == 4) {
+		  if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+		  if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+		  /*remove the attribute, and call this function once more:*/
+		  elmnt.removeAttribute("maskit-include-html");
+		  includeHTML();
+		}
+	  }
+	  xhttp.open("GET", file, true);
+	  xhttp.send();
+	  /*exit the function:*/
+	  return;
+	}
+  }
+};
+
+
+
+
+
+
+
 
 
 

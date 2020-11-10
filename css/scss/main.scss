@@ -147,7 +147,9 @@ main{
 	padding: 10px;
 
 	.container{
+		position: relative;
 		padding-left: 5%;
+		width: 43%;
 
 		li > ol{
 			margin-top: 20px;
@@ -161,11 +163,17 @@ main{
 
 		a{
 			@include text(1.4rem, light);
+			background-color: inherit;
 			text-decoration: underline;
 		}
 	}
 }
 
+@media screen and (max-width: 750px){
+	main{
+		width: auto;
+	}
+}
 
 /**************
 	FOOTER

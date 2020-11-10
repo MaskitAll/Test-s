@@ -8,9 +8,9 @@
 <!-- Подключение стилей	-->
 	<link rel="stylesheet" href="/css/reset.css">
 	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/test.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 
 	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
@@ -45,7 +45,16 @@
 		<ol>
 			<li> Задачи по HTML без использования стилей
 				<ol>
-					<li v-for="page in htmlWithoutStyles">Задача: <a :href = "page.link">{{ page.name }}</a></li>
+					<li v-for="page in htmlWithoutStyles">Задача: <a :href = "page.link" v-on:click.prevent="show(page.id)">{{ page.name }}</a>
+
+						<div class = "test" onclick="rotate()" v-if="page.isShow" >
+
+							<div :maskit-include-html="page.task"  class = "card__side front" :class="page.dificult" v-if="page.isShow">front</div>
+
+							<div :maskit-include-html="page.decision"  class = "card__side decision" :class="page.dificult" v-if="page.isShow">back</div>
+
+						</div>
+					</li>
 				</ol>
 			</li>
 
@@ -125,3 +134,5 @@
 
 
 <script src="js/script.js"></script>
+<script src="js/card.js"></script>
+<script>includeHTML();</script>

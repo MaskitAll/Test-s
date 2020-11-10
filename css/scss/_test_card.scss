@@ -17,15 +17,18 @@
 
 
 .test{
-	position: relative;
+	position: absolute;
 	perspective: 3000px;
 
-	width: 900px;
-	box-sizing: content-box;
-	margin: 20px auto;
+	width: 100%;
+	left: 100%;
+	top: 0;
+	margin: 20px;
 
 	font-family: serif;
 	font-size: 1.4em;
+
+	box-sizing: content-box;
 	user-select: none;
 }
 
