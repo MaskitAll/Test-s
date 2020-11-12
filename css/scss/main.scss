@@ -149,9 +149,12 @@ main{
 	.container{
 		position: relative;
 		padding-left: 5%;
-		width: 43%;
+		padding-right: 5%;
+		box-sizing: border-box;
+		width: 44%;
 
 		li > ol{
+			position: relative;
 			margin-top: 20px;
 			margin-bottom: 20px;
 		}
@@ -169,11 +172,24 @@ main{
 	}
 }
 
+@media screen and (max-width: 1150px){
+	main .container{
+		width: 100%;
+	}
+
+	.test{
+		position: relative;
+		width: calc(100% + 60px);
+		left: -60px;
+	}
+}
+
 @media screen and (max-width: 750px){
 	main{
 		width: auto;
 	}
 }
+
 
 /**************
 	FOOTER
@@ -226,8 +242,8 @@ footer{
 		overflow: hidden;
 
 		width: 100%;
-		height: 15px;
-//		height: auto;
+//		height: 15px;
+		height: auto;
 		padding: 10px 0;
 		transition: .5s;
 
