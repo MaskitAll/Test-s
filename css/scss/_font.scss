@@ -14,19 +14,23 @@ $color_with_love: #b00b69;
 /*MIXINs*/
 
 @mixin theme($theme: inherit){
-	@if $theme == light{
-		background-color: $color_back;
-		color: $color_font;
-	}
-
-	@else if $theme == dark{
-		background-color: $color_back-dark;
-		color: $color_font-dark;
-	}
-
-	@else if $theme == bee {
-		background-color: $color_back-bee;
-		color: $color_font-bee;
+	&,a{
+		@if $theme == light{
+			background-color: $color_back;
+			color: $color_font;
+		}
+		@else if $theme == dark{
+			background-color: $color_back-dark;
+			color: $color_font-dark;
+		}
+		@else if $theme == bee {
+			background-color: $color_back-bee;
+			color: $color_font-bee;
+		}
+		@else if $theme == love {
+			background-color: $color_with_love;
+			color: #000;
+		}
 	}
 }
 

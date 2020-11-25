@@ -1,0 +1,205 @@
+$back-color: #202020;
+$text-color: #b00b69;
+
+$back_color-light: #fff;
+$text_color-light: #000;
+
+$back_color-dark: #000;
+$text_color-dark: #fff;
+
+$back_color-bee: rgba(255, 255, 0, 1);
+$text_color-bee: #000;
+
+
+body{
+	font-family: sans-serif;
+	font-size: 10px;
+	font-weight: 600;
+	transition: .2s;
+
+	li{
+		list-style: none;
+	}
+}
+
+
+
+
+
+/*FLEX-DIRECTION*/
+.row{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.column{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+
+
+/*THEME*/
+@mixin theme($theme: light, $hover: false){
+
+	@if $theme == light {
+		background-color: $back_color-light;
+		color: $text_color-light;
+		border-color: $text_color-light;
+	}
+	@else if $theme == dark {
+		background-color: $back_color-dark;
+		color: $text_color-dark;
+		border-color: $text_color-dark;
+	}
+	@else if $theme == bee {
+		background-color: $back_color-bee;
+		color: $text_color-bee;
+		border-color: $text_color-bee;
+	}
+	@else if $theme == inherit {
+		background-color: inherit;
+		color: inherit;
+		border-color: inherit;
+	}
+}
+
+a{
+	@include theme(inherit);
+	text-decoration: none;
+}
+
+._light{
+	@include theme(light);
+}
+
+._dark{
+	@include theme(dark);
+}
+
+._bee{
+	@include theme(bee);
+}
+
+/*FONTS*/
+@mixin font($size: 1rem, $weight: 600, $Height: 1em, $style: normal){
+	font-size: $size;
+	font-weight: $weight;
+	line-height: $Height;
+	font-style: $style;
+}
+
+h1{
+	@include font(3.6rem, 600, .8em);
+}
+
+h2{
+	@include font(2.4rem, 600, .8em);
+}
+
+h3{
+	@include font(1.8rem, 600, .8em);
+}
+
+h4{
+	@include font(1.4rem, 400, .8em);
+}
+
+p{
+	@include font(1.2rem, 400, 1em);
+}
+
+.text{
+	@include font(1.4rem, 400, .8em);
+}
+
+/*BLOCKS*/
+@mixin block($radius: 2rem, $size: 1rem, $shadow: #202020, $inset: false){
+	border-radius: $radius;
+	padding: $radius / 2;
+	margin-bottom: $radius;
+	min-width: 5rem;
+	text-align: center;
+
+
+	@if($inset) {
+		box-shadow: inset 0 0 $size $shadow;
+	} @else {
+		box-shadow: 0 0 $size $shadow;
+	}
+
+}
+
+._box{
+	@include block(.5rem, .1rem, #202020);
+}
+
+._box-hangS{
+	@include block(.5rem, .3rem, #202020);
+}
+
+._box-hangM{
+	@include block(1rem, .5rem, #202020);
+}
+
+._box-hangX{
+	@include block(2rem, 1rem, #202020);
+}
+
+._box-insetS{
+	@include block(.5rem, .3rem, #202020, inset);
+}
+
+._box-insetM{
+	@include block(1rem, .5rem, #202020, inset);
+}
+
+._box-insetX{
+	@include block(2rem, 1rem, #202020, inset);
+}
+
+/*BUTTONS*/
+
+.btn{
+	cursor: pointer;
+	padding: .5rem;
+
+	border: none;
+
+	&:active, &:focus {
+		outline: none;
+	}
+}
+
+
+
+
+
+#maket{
+	display: block;
+	margin: 30px 20%;
+
+}
+
+.menu{
+
+	transition: .2s;
+
+	& ul{
+		display: none;
+	}
+
+	li{
+		@include block(1.2rem, .3rem, #202020, inset);
+		@include theme(light);
+	}
+
+	li:hover {
+		background-color: darken($back_color-light, 20);
+		transition: .3s;
+	}
+}

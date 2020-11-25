@@ -51,7 +51,9 @@
 						</div>
 						<div class = "test" @click="rotate" v-if="page.isShow" >
 
-							<div :maskit-include-html="page.task"  class = "card__side front" :class="page.dificult" v-if="page.isShow">Задача не найдена</div>
+							<div :maskit-include-html="page.task"  class = "card__side front" :class="page.dificult" v-if="page.isShow">
+
+							Задача не найдена</div>
 
 							<div :maskit-include-html="page.decision"  class = "card__side decision" :class="page.dificult" v-if="page.isShow">Задача не решена</div>
 
@@ -113,13 +115,13 @@
 				<ul v-if="isShowFooter">
 					<li><a href="index.html">Главная</a></li>
 					<li><a href="#">Содержание</a></li>
-					<li><a href="pages/dictionary.html">Словарь</a></li>
+					<li><a href="/dictionary.html">Словарь</a></li>
 					<li><a href="#">О сайте</a></li>
 				</ul>
 			</div>
 			<div class="footer__col"> Интересные проекты
 				<ul v-if="isShowFooter">
-					<li><a href="html/other/maket-2.html">maket 1.2</a></li>
+					<li><a href="html/other/maket-3.html">maket 1.2</a></li>
 					<li><a href="/pages/raki.html">Raki</a></li>
 					<li>.</li>
 					<li>.</li>

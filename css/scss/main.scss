@@ -20,8 +20,10 @@
 	HEADER
 ***************/
 header{
+	$theme: light;
+
 	@include row;
-	@include theme(light);
+	@include theme($theme);
 	justify-content: space-between;
 
 	width: 100%;
@@ -33,7 +35,7 @@ header{
 		margin: 10px 10px 10px 50px;
 
 		.logo__text{
-			@include text(5rem, light);
+			@include text(5rem, $theme);
 			text-shadow: 1px 1px 1px rgb(255, 255, 0);
 			text-transform: uppercase;
 			text-decoration: none;
@@ -142,16 +144,19 @@ header{
 	MAIN
 ***************/
 main{
-	@include text(1.4rem, light);
+	$theme: light;
+
+	@include text(1.4rem, $theme);
 	overflow-y: scroll;
 	padding: 10px;
 
 	.container{
 		position: relative;
-		padding-left: 5%;
-		padding-right: 5%;
-		box-sizing: border-box;
-		width: 44%;
+
+		width: 45%;
+		margin-left: 5%;
+		margin-right: 5%;
+
 
 		li > ol{
 			position: relative;
@@ -164,8 +169,8 @@ main{
 			margin-left: 60px;
 		}
 
-		a{
-			@include text(1.4rem, light);
+		& a{
+			font-size: 1.1em;
 			background-color: inherit;
 			text-decoration: underline;
 		}
@@ -174,7 +179,7 @@ main{
 
 @media screen and (max-width: 1150px){
 	main .container{
-		width: 100%;
+		width: 90%;
 	}
 
 	.test{
@@ -195,7 +200,10 @@ main{
 	FOOTER
 ***************/
 footer{
-	@include text(1rem, dark);
+	$theme: dark;
+	@include text(1rem, $theme);
+	z-index: 10;
+
 	position: relative;
 	transition: 1s;
 
@@ -220,8 +228,9 @@ footer{
 //	}
 
 	.footer__label{
-		@include text(1.2rem, dark);
+		@include text(1.2rem, $theme);
 		position: absolute;
+		cursor: pointer;
 
 		top: -25px;
 		left: 50%;
@@ -255,11 +264,11 @@ footer{
 
 		li{
 			&, a{
-				@include text(.9rem, dark);
+				@include text(.9rem, $theme);
 				display: block;
 
 				&:hover{
-					@include hover(dark);
+					@include hover($theme);
 					transform: none;
 				}
 			}

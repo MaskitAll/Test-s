@@ -433,21 +433,6 @@ var Vue = new Vue({
 	},
 
 		methods: {
-//			showFooter: function(){
-//				var footerContainer = document.querySelector("footer .footer__container");
-//
-//				if(footerLabel.style.display === "block"){
-//					if(this.isShowFooter === 0) {
-//						footerContainer.style.height = 'auto';
-//						this.isShowFooter = 1;
-//					}
-//					else {
-//						footerContainer.style.height = 15 + 'px';
-//						this.isShowFooter = 0;
-//					}
-//				}
-//			},
-
 
 			showCard: function(id, list) {
 				list = list.map(card => {
@@ -474,6 +459,9 @@ var Vue = new Vue({
 			},
 		}
 });
+
+
+
 
 
 
@@ -525,6 +513,7 @@ function handleTabletMinChange(e) {
 handleTabletMinChange(mediaQueryMin);
 mediaQueryMin.addListener(handleTabletMinChange);
 
+
 /*************************************************
 ФУНКЦИЯ НАБЛЮДЕНИЯ ЗА DOM В MAIN
 **************************************************/
@@ -573,30 +562,5 @@ function includeHTML() {
   }
 };
 
-
-
-
-
-
-
-
-
-
-//var footer = document.querySelector("footer");
-//var footerContainer = document.querySelector("footer .footer__container");
-//var footerShow = 0;
-//
-//footer.addEventListener("click", function(){
-//	console.log(footerContainer.style);
-//
-//	if(footerShow === 0) {
-//		footerContainer.style.height = 'auto';
-//		footerShow = 1;
-//	}
-//	else {
-//		footerContainer.style.height = 15 + 'px';
-//		footerShow = 0;
-//	}
-//});
 
 

@@ -5,11 +5,11 @@
 	<title>Maket</title>
 
 		<!-- Подключаем LESS-->
-	<link rel="stylesheet/less" type="text/css" href="/css/maket-2.less" />
+<!--	<link rel="stylesheet/less" type="text/css" href="/css/maket-2.less" />-->
 	<script src="//cdn.jsdelivr.net/npm/less" ></script>
 
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/maket-2.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/scss/maket-2.css">
 
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,500;1,600;1,800&display=swap" rel="stylesheet">
 
@@ -138,12 +138,12 @@
 			<!-- Drag&Drop -->
 
 		<div id="dragndrop" class="dragndrop block"
-    		ondragenter="return dragEnter(event)"
-     		ondrop="return dragDrop(event)"
-     		ondragover="return dragOver(event)"
-     		ondragleave="return dragLeave(event)">
+			ondragenter="return dragEnter(event)"
+			 ondrop="return dragDrop(event)"
+			 ondragover="return dragOver(event)"
+			 ondragleave="return dragLeave(event)">
 
-    		<!-- square -->
+			<!-- square -->
 			<div id="box_1" class="drag-box" draggable="true" ondragstart="return dragStart(event)">
 				<div class="drag square"></div>
 			</div>
@@ -622,7 +622,7 @@
 
 
 	function swipe_con(c1, c2){
-		 	check_main(c2);
+			 check_main(c2);
 			check_minor(c1);
 	}
 
@@ -690,8 +690,8 @@
 	// DRAG&DROP
 // начало перетаскивания объекта
 function dragStart(ev) {
-   	ev.dataTransfer.effectAllowed='move';
-   	ev.dataTransfer.setData("Text", ev.target.id);
+	   ev.dataTransfer.effectAllowed='move';
+	   ev.dataTransfer.setData("Text", ev.target.id);
 
 
 	console.log(ev.target);
