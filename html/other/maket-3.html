@@ -10,7 +10,10 @@
 <!--	<script src="//cdn.jsdelivr.net/npm/less" ></script>-->
 
 <!--	<link rel="stylesheet" type="text/css" href="/css/reset.css">-->
-	<link rel="stylesheet" type="text/css" href="/css/css/maket-3.css">
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/css/maket-3.css">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
 
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,500;1,600;1,800&display=swap" rel="stylesheet">
 
@@ -44,16 +47,74 @@
 			</li>
 			<li><a href="#">Контакты</a></li>
 
-			<li class="bye"><a href="#">Купить</a></li>
+			<li class="bye btn"><a href="#">Купить</a></li>
 		</ul>
 	</div>
 
-<div class="content _box-insetM _light">
+<div class="content _block _box-insetS _light">
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere ullam ab architecto ex cumque, consequatur molestias aliquam accusamus earum deserunt vel nobis, fugiat, itaque repellendus magnam doloribus possimus temporibus tempore.</p>
+</div>
+
+<div class="content _block _box _light">
+	<ul class="column">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
 </div>
 
 
 
+
+
+
+<!-- Stars -->
+	<div id="star1" class="star _block _box-insetM _light">
+		<input id="star1" type="radio" name="star">
+		<label for="star1"></label>
+		<input id="star2" type="radio" name="star">
+		<label for="star2"></label>
+		<input id="star3" type="radio" name="star">
+		<label for="star3"></label>
+		<input id="star4" type="radio" name="star">
+		<label for="star4"></label>
+		<input id="star5" type="radio" name="star">
+		<label for="star5"></label>
+	</div>
+
+	<div id="star2" class="star _block _box-insetM _light">
+		<input id="star10" type="radio" name="star2">
+		<label for="star10"></label>
+		<input id="star20" type="radio" name="star2">
+		<label for="star20"></label>
+		<input id="star30" type="radio" name="star2">
+		<label for="star30"></label>
+		<input id="star40" type="radio" name="star2">
+		<label for="star40"></label>
+		<input id="star50" type="radio" name="star2">
+		<label for="star50"></label>
+	</div>
+
+
+
+
+
+
+
+
+
+<!-- Canvas -->
+	<div id="canvas" class="_block _box-insetM _light">
+		<canvas id="example"></canvas>
+		<script>
+			var example = document.getElementById("example"),
+				ctx     = example.getContext('2d');
+
+			ctx.fillRect(0, 0, example.width, example.height);
+		</script>
+	</div>
 
 
 
