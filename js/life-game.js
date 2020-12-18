@@ -227,7 +227,7 @@ console.log("test");
 m.drawMap();
 //m.dayToggle();
 
-//nextDay(m);
+nextDay(m);
 
 
 //console.log(m);
