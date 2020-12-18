@@ -230,6 +230,7 @@ m.drawMap();
 nextDay(m);
 
 
+
 //console.log(m);
 //console.log('s');
 //console.log(m.showMap());
