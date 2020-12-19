@@ -158,12 +158,26 @@ p {
 
 /*BUTTONS*/
 .btn {
-  cursor: pointer;
   padding: 0.5rem;
+  margin: none;
+  border-radius: 0.4rem;
+  background-color: #000;
+  color: #fff;
+  border-color: #fff;
+  cursor: pointer;
+  margin-right: 0.5rem;
   border: none;
+}
+.btn:hover {
+  background-color: #4d4d4d;
 }
 .btn:active, .btn:focus {
   outline: none;
+}
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  padding: 0 0.5rem 0.5rem;
 }
 
 .star {
@@ -248,7 +262,7 @@ p {
 }
 
 #canvas {
-  height: 300px;
+  height: auto;
 }
 #canvas canvas {
   width: 100%;

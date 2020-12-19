@@ -1,10 +1,46 @@
 'use strict';
+var start = document.querySelector("#lifeStart"),
+	pause = document.querySelector("#lifePause"),
+	reset = document.querySelector("#lifeReset"),
+	next = document.querySelector("#lifeNext"),
+	speed = document.querySelector("#lifeSpeed");
+
+var lifeTimer;
+var lifeSpeed = 500;
 
 var example = document.getElementById("example"),
 	ctx     = example.getContext('2d');
 
 	ctx.fillStyle = "#ccc";
 	ctx.fillRect(0, 0, example.width, example.height);
+
+
+start.addEventListener('click', function(){
+	clearInterval(lifeTimer);
+	lifeTimer = setInterval(nextDay, lifeSpeed, m);
+});
+
+pause.addEventListener('click', function(){
+	clearInterval(lifeTimer);
+});
+
+next.addEventListener('click', function(){
+	m.dayToggle();
+	m.drawMap();
+});
+
+reset.addEventListener('click', function(){
+	m.fillMap(true);
+	m.drawMap();
+});
+
+
+function changeSpeed(){
+	lifeSpeed = (20 - speed.value) * 100;
+	start.click();
+};
+
+
 
 
 function random(min, max) {
@@ -16,19 +52,14 @@ function random(min, max) {
 function createArr(width, height){
 	var map = new Array(width);
 	for (var i = 0; i < map.length; ++i) {
-		map[i] = new Array(height); // 10 столбцов
+		map[i] = new Array(height);
 	}
 	return map;
 }
 
 
 
-
-
-
-
-
-
+/*	Ячейка	*/
 
 function cell(x = 0, y = 0, life = false){
 	this.x = x;
@@ -59,6 +90,8 @@ cell.prototype = {
 
 };
 
+
+/*	Карта	*/
 
 function map(width = 10, height = 10){
 	this.width = width;
@@ -103,7 +136,6 @@ map.prototype = {
 			}
 		}
 
-
 		var d = "";
 		var conditions = 0;
 
@@ -144,7 +176,6 @@ map.prototype = {
 			}
 		}
 		this.cellMap = secCellMap;
-//		return secCellMap;
 	},
 
 	showMap: function(){
@@ -174,33 +205,24 @@ map.prototype = {
 
 }
 
-	function nextDay(m1){
-		m1.dayToggle();
-//		m1.showMap();
-		m1.drawMap();
-
-		setTimeout(nextDay, 500, m1);
-	}
 
 
-var c = new cell();
-//c.drawCell();
-console.log(c);
+function nextDay(m1){
+	m1.dayToggle();
+//	m1.showMap();
+	m1.drawMap();
+//	lifeTimer = setTimeout(nextDay, 500, m1);
+}
 
 var w = Math.floor(example.width / 10);
 var h = Math.floor(example.height / 10);
 
-
-console.log(w);
-console.log(h);
-
-
-
-
-console.log('m');
 var m = new map(w, h);
 m.createMap();
 m.fillMap(true);
+m.drawMap();
+
+
 //m.cellMap[0][0].life = true;
 //m.cellMap[1][0].life = true;
 //m.cellMap[0][1].life = true;
@@ -222,23 +244,10 @@ m.fillMap(true);
 //m.cellMap[29][12].life = true;
 //m.cellMap[29][11].life = true;
 
-console.log("test");
+//console.log("test");
 //m.showMap();
-m.drawMap();
 //m.dayToggle();
 
-nextDay(m);
+//nextDay(m);
 
 
-
-//console.log(m);
-//console.log('s');
-//console.log(m.showMap());
-//console.log('m');
-
-//console.log('m1');
-//var m1 = new map();
-//m1 = m;
-//m1.dayToggle();
-//console.log(m1);
-//console.log(m1.showMap());

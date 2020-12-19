@@ -42,7 +42,6 @@ p{
 }
 
 
-
 /*BLOCKS*/
 
 ._box{
@@ -86,15 +85,31 @@ p{
 /*BUTTONS*/
 
 .btn{
+	@include block(.4rem, .5rem);
+	@include theme(dark, true);
+
 	cursor: pointer;
-	padding: .5rem;
+
+	margin-right: .5rem;
+
 
 	border: none;
 
 	&:active, &:focus {
 		outline: none;
 	}
+
+	&:hover{
+
+	}
 }
+
+.btn-container{
+	display: flex;
+	flex-direction: row;
+	padding: 0 .5rem .5rem;
+}
+
 
 
 
@@ -195,10 +210,13 @@ p{
 
 
 #canvas{
-	height: 300px;
+	height: auto;
 
 	canvas{
 		width: 100%;
 		height: 100%;
 	}
+
 }
+
+
