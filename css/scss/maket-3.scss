@@ -89,9 +89,9 @@ p{
 	@include theme(dark, true);
 
 	cursor: pointer;
-
 	margin-right: .5rem;
 
+	min-width: 10rem;
 
 	border: none;
 
@@ -107,7 +107,11 @@ p{
 .btn-container{
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
 	padding: 0 .5rem .5rem;
+
+	width: 100%;
 }
 
 

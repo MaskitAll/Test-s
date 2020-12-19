@@ -166,6 +166,7 @@ p {
   border-color: #fff;
   cursor: pointer;
   margin-right: 0.5rem;
+  min-width: 10rem;
   border: none;
 }
 .btn:hover {
@@ -177,7 +178,10 @@ p {
 .btn-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
   padding: 0 0.5rem 0.5rem;
+  width: 100%;
 }
 
 .star {
