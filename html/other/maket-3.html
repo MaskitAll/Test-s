@@ -106,12 +106,13 @@
 
 
 <!-- Canvas -->
-	<div id="canvas" class="_block _box-insetM _light">
+	<div id="canvas" class="_block _box-insetM _light" width = "300" height = "150">
 		<canvas id="example"></canvas>
 		<div class="btn-container">
 			<button class="btn" id="lifeStart">Начать</button>
 			<button class="btn" id="lifePause">Пауза</button>
 			<button class="btn" id="lifeNext">Следующий день</button>
+			<button class="btn" id="lifeRand">Заполнить рандомно</button>
 			<button class="btn" id="lifeReset">Сбросить</button>
 		</div>
 		<input type="range" id="lifeSpeed" oninput="changeSpeed()" min="1" max="20" value="15">

@@ -1,6 +1,10 @@
 'use strict';
+var example = document.getElementById("example"),
+	ctx     = example.getContext('2d');
+
 var start = document.querySelector("#lifeStart"),
 	pause = document.querySelector("#lifePause"),
+	rand = document.querySelector("#lifeRand"),
 	reset = document.querySelector("#lifeReset"),
 	next = document.querySelector("#lifeNext"),
 	speed = document.querySelector("#lifeSpeed");
@@ -8,12 +12,56 @@ var start = document.querySelector("#lifeStart"),
 var lifeTimer;
 var lifeSpeed = 500;
 
-var example = document.getElementById("example"),
-	ctx     = example.getContext('2d');
+	example.width = example.offsetWidth;
+	example.height = example.offsetHeight;
 
 	ctx.fillStyle = "#ccc";
 	ctx.fillRect(0, 0, example.width, example.height);
 
+var w = Math.floor(example.width / 20);
+var h = Math.floor(example.height / 20);
+console.log('w = ' + w + " h = " + h);
+
+
+function windowToCanvas(x, y) {
+	var bbox = example.getBoundingClientRect();
+
+	return {
+		x: x - bbox.left * (example.offsetWidth / bbox.width),
+		y: y - bbox.top * (example.offsetHeight / bbox.height)
+	};
+}
+
+example.addEventListener('mousedown', function (e) {
+	var loc = windowToCanvas(e.clientX, e.clientY);
+	var x = loc.x;
+	var y = loc.y;
+
+	console.log('x = ' + x + " y = " + y);
+
+	x = Math.floor(x / (example.offsetWidth / w));
+	y = Math.floor(y / (example.offsetHeight / h));
+
+	console.log('x = ' + x + " y = " + y);
+	toggleCell(x, y);
+});
+
+function toggleCell(x, y){
+	m.cellMap[x][y].toggleLife();
+	m.drawMap();
+}
+
+
+/*Управление кнопками*/
+window.addEventListener(`resize`, event => {
+		example.width = example.offsetWidth;
+		example.height = example.offsetHeight;
+
+		ctx.fillStyle = "#ccc";
+		ctx.fillRect(0, 0, example.width, example.height);
+
+		m.drawMap();
+}, false);
 
 start.addEventListener('click', function(){
 	clearInterval(lifeTimer);
@@ -29,8 +77,15 @@ next.addEventListener('click', function(){
 	m.drawMap();
 });
 
-reset.addEventListener('click', function(){
+rand.addEventListener('click', function(){
+	clearInterval(lifeTimer);
 	m.fillMap(true);
+	m.drawMap();
+});
+
+reset.addEventListener('click', function(){
+	clearInterval(lifeTimer);
+	m.fillMap(false);
 	m.drawMap();
 });
 
@@ -42,11 +97,13 @@ function changeSpeed(){
 
 
 
+/* Всякие функции поддержки*/
 
 function random(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;}
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 
 function createArr(width, height){
@@ -56,6 +113,15 @@ function createArr(width, height){
 	}
 	return map;
 }
+
+
+function nextDay(m1){
+	m1.dayToggle();
+//	m1.showMap();
+	m1.drawMap();
+//	lifeTimer = setTimeout(nextDay, 500, m1);
+}
+
 
 
 
@@ -80,14 +146,13 @@ cell.prototype = {
 
 	toggleLife: function(){
 		if(this.life === true) this.life = false;
-		if(this.life === false) this.life = true;
+		else this.life = true;
 	},
 
 	drawCell: function(color = "#000"){
 		ctx.fillStyle = color;
-		ctx.fillRect( this.x * 10, this.y * 10, 8, 8);
+		ctx.fillRect(this.x * (example.width / w), this.y * (example.height / h), (example.width / w) * .9, (example.height / h) * .9);
 	}
-
 };
 
 
@@ -111,7 +176,6 @@ map.prototype = {
 //				this.cellMap[i][j] = random(0, 1);
 			}
 		}
-
 	},
 
 	fillMap: function(rand = false){
@@ -128,6 +192,132 @@ map.prototype = {
 		}
 	},
 
+	lifeCondition: function(i, j){
+		var conditions = 0;
+		if(i > 0 && j > 0 				&& this.cellMap[i - 1][j - 1].life) {++conditions;}
+		if(i > 0 						&& this.cellMap[i - 1][j].life) 	{++conditions;}
+		if(i > 0 && j < this.cellMap[i].length-1
+										   && this.cellMap[i - 1][j + 1].life) {++conditions;}
+
+		if(j > 0						&& this.cellMap[i][j - 1].life) 	{++conditions;}
+		if(j < this.cellMap[i].length-1	&& this.cellMap[i][j + 1].life) 	{++conditions;}
+
+		if(i < this.cellMap.length-1 && j > 0
+										   && this.cellMap[i + 1][j - 1].life) {++conditions;}
+		if(i < this.cellMap.length-1	&& this.cellMap[i + 1][j].life)  	{++conditions;}
+		if(i < this.cellMap.length-1 && j < this.cellMap[i].length-1
+										   && this.cellMap[i + 1][j + 1].life)	{++conditions;}
+		return conditions;
+	},
+
+	b3_s23: function(secCellMap, conditions, i, j){
+//		var d = "";
+		if(this.cellMap[i][j].life == true){
+			if(conditions === 2 || conditions === 3) {
+				secCellMap[i][j].life = true;
+//				d = "живет";
+			}
+			else {
+				secCellMap[i][j].life = false;
+//				d = "умирает";
+			}
+		} else {
+			if(conditions === 3) {
+				secCellMap[i][j].life = true;
+//				d = "рождается";
+			}
+//			else{
+//				d = "остается мертвой";
+//			}
+//				console.log(i + " " + j + " " + d + " при " + conditions);
+		}
+		return secCellMap;
+	},
+
+	b5678_s45678: function(secCellMap, conditions, i, j){
+//		var d = "";
+		if(this.cellMap[i][j].life == true){
+			if(conditions >= 4 && conditions <= 8) {
+				secCellMap[i][j].life = true;
+//				d = "живет";
+			}
+			else {
+				secCellMap[i][j].life = false;
+//				d = "умирает";
+			}
+		} else {
+			if(conditions >= 5 && conditions <= 8) {
+				secCellMap[i][j].life = true;
+//				d = "рождается";
+			}
+//				console.log(i + " " + j + " " + d + " при " + conditions);
+		}
+		return secCellMap;
+	},
+
+	b45678_s234: function(secCellMap, conditions, i, j){
+//		var d = "";
+		if(this.cellMap[i][j].life == true){
+			if(conditions >= 2 && conditions <= 4) {
+				secCellMap[i][j].life = true;
+//				d = "живет";
+			}
+			else {
+				secCellMap[i][j].life = false;
+//				d = "умирает";
+			}
+		} else {
+			if(conditions >= 4 && conditions <= 8) {
+				secCellMap[i][j].life = true;
+//				d = "рождается";
+			}
+//				console.log(i + " " + j + " " + d + " при " + conditions);
+		}
+		return secCellMap;
+	},
+
+	b2468_s1357: function(secCellMap, conditions, i, j){
+//		var d = "";
+		if(this.cellMap[i][j].life == true){
+			if(conditions === 1 || conditions === 3 || conditions === 5 || conditions === 7) {
+				secCellMap[i][j].life = true;
+//				d = "живет";
+			}
+			else {
+				secCellMap[i][j].life = false;
+//				d = "умирает";
+			}
+		} else {
+			if(conditions === 2 || conditions === 4 || conditions === 6 || conditions === 8){
+				secCellMap[i][j].life = true;
+//				d = "рождается";
+			}
+//				console.log(i + " " + j + " " + d + " при " + conditions);
+		}
+		return secCellMap;
+	},
+
+	b12_s1357: function(secCellMap, conditions, i, j){
+//		var d = "";
+		if(this.cellMap[i][j].life == true){
+			if(conditions === 1 || conditions === 3 || conditions === 5 || conditions === 7) {
+				secCellMap[i][j].life = true;
+//				d = "живет";
+			}
+			else {
+				secCellMap[i][j].life = false;
+//				d = "умирает";
+			}
+		} else {
+			if(conditions <= 2){
+				secCellMap[i][j].life = true;
+//				d = "рождается";
+			}
+//				console.log(i + " " + j + " " + d + " при " + conditions);
+		}
+		return secCellMap;
+	},
+
 	dayToggle: function(){
 		var secCellMap = createArr(this.width, this.height);
 		for (var i = 0; i < this.cellMap.length; ++i){
@@ -136,42 +326,13 @@ map.prototype = {
 			}
 		}
 
-		var d = "";
 		var conditions = 0;
 
 		for (var i = 0; i < this.cellMap.length; ++i){
 			for (var j = 0; j < this.cellMap[i].length; ++j){
+				conditions = this.lifeCondition(i, j);
 
-	if(i > 0 && j > 0 												&& this.cellMap[i - 1][j - 1].life) {++conditions;}
-	if(i > 0 														&& this.cellMap[i - 1][j].life) 	{++conditions;}
-	if(i > 0 && j < this.cellMap[i].length-1						&& this.cellMap[i - 1][j + 1].life) {++conditions;}
-
-	if(j > 0														&& this.cellMap[i][j - 1].life) 	{++conditions;}
-	if(j < this.cellMap[i].length-1									&& this.cellMap[i][j + 1].life) 	{++conditions;}
-
-	if(i < this.cellMap.length-1 && j > 0							&& this.cellMap[i + 1][j - 1].life) {++conditions;}
-	if(i < this.cellMap.length-1									&& this.cellMap[i + 1][j].life)  	{++conditions;}
-	if(i < this.cellMap.length-1 && j < this.cellMap[i].length-1 	&& this.cellMap[i + 1][j + 1].life)	{++conditions;}
-
-				if(this.cellMap[i][j].life == true){
-					if(conditions === 2 || conditions === 3) {
-						secCellMap[i][j].life = true;
-						d = "живет";
-					}
-					else {
-						secCellMap[i][j].life = false;
-						d = "умирает";
-					}
-				} else {
-					if(conditions === 3) {
-						secCellMap[i][j].life = true;
-						d = "рождается";
-					}
-					else{
-						d = "остается мертвой";
-					}
-				}
-//				console.log(i + " " + j + " " + d + " при " + conditions);
+				secCellMap = this.b3_s23(secCellMap, conditions, i, j);
 				conditions = 0;
 			}
 		}
@@ -190,13 +351,13 @@ map.prototype = {
 	},
 
 	drawMap: function(){
+//		console.log("draw");
 		for (var i = 0; i < this.cellMap.length; ++i){
 			for (var j = 0; j < this.cellMap[i].length; ++j){
 				if(this.cellMap[i][j].life == true){
 					this.cellMap[i][j].drawCell();
 				} else if(this.cellMap[i][j].life == false) {
 					this.cellMap[i][j].drawCell("#ccc");
-
 				}
 			}
 		}
@@ -204,18 +365,6 @@ map.prototype = {
 
 
 }
-
-
-
-function nextDay(m1){
-	m1.dayToggle();
-//	m1.showMap();
-	m1.drawMap();
-//	lifeTimer = setTimeout(nextDay, 500, m1);
-}
-
-var w = Math.floor(example.width / 10);
-var h = Math.floor(example.height / 10);
 
 var m = new map(w, h);
 m.createMap();
