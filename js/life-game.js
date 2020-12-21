@@ -71,17 +71,17 @@ window.addEventListener(`resize`, event => {
 }, false);
 
 example.addEventListener('mousedown', function (e) {
+//	example.addEventListener('mousemove', function (e) {
+
 	var loc = windowToCanvas(e.clientX, e.clientY);
 	var x = loc.x;
 	var y = loc.y;
 
-	console.log('x = ' + x + " y = " + y);
-
 	x = Math.floor(x / (example.offsetWidth / w));
 	y = Math.floor(y / (example.offsetHeight / h));
 
-	console.log('x = ' + x + " y = " + y);
 	toggleCell(x, y);
+//	});
 });
 
 start.addEventListener('click', function(){
@@ -173,7 +173,7 @@ cell.prototype = {
 
 	drawCell: function(color = "#000"){
 		ctx.fillStyle = color;
-		ctx.fillRect(this.x * (example.width / w), this.y * (example.height / h), (example.width / w) * .9, (example.height / h) * .9);
+		ctx.fillRect(Math.floor(this.x * example.width / w), Math.floor(this.y * example.height / h), Math.floor(example.width / w) - 2, Math.floor(example.height / h) - 2);
 	}
 };
 

@@ -263,6 +263,7 @@ p {
 
 .content {
   min-height: 100px;
+  text-align: justify;
 }
 
 #canvas {
