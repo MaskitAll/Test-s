@@ -20,7 +20,7 @@ var lifeSpeed = 500;
 
 var w = Math.floor(example.width / 20);
 var h = Math.floor(example.height / 20);
-console.log('w = ' + w + " h = " + h);
+	console.log('w = ' + w + " h = " + h);
 
 
 function windowToCanvas(x, y) {
@@ -31,6 +31,46 @@ function windowToCanvas(x, y) {
 		y: y - bbox.top * (example.offsetHeight / bbox.height)
 	};
 }
+
+
+function getCheckedCheckBoxes(ch_container) {
+	var checkboxes = document.querySelectorAll(ch_container);
+	var checkboxesChecked = []; // можно в массиве их хранить, если нужно использовать
+
+	for (var i = 0; i < checkboxes.length; i++) {
+	 if (checkboxes[i].checked) {
+		checkboxesChecked.push(i); // положим в массив выбранный
+//		alert(checkboxes[i].value); // делайте что нужно - это для наглядности
+	 }
+	}
+	return checkboxesChecked; // для использования в нужном месте
+}
+
+function toggleCell(x, y){
+	m.cellMap[x][y].toggleLife();
+	m.drawMap();
+}
+
+function born_i(checkboxesChecked, conditions, i){
+	if(checkboxesChecked.indexOf(i) != -1){
+		if(conditions === i) {
+			return true;
+		}
+	}
+	return false;
+}
+
+
+/*Управление кнопками*/
+window.addEventListener(`resize`, event => {
+		example.width = example.offsetWidth;
+		example.height = example.offsetHeight;
+
+		ctx.fillStyle = "#ccc";
+		ctx.fillRect(0, 0, example.width, example.height);
+
+		m.drawMap();
+}, false);
 
 example.addEventListener('mousedown', function (e) {
 	var loc = windowToCanvas(e.clientX, e.clientY);
@@ -46,24 +86,9 @@ example.addEventListener('mousedown', function (e) {
 	toggleCell(x, y);
 });
 
-function toggleCell(x, y){
-	m.cellMap[x][y].toggleLife();
-	m.drawMap();
-}
-
-
-/*Управление кнопками*/
-window.addEventListener(`resize`, event => {
-		example.width = example.offsetWidth;
-		example.height = example.offsetHeight;
-
-		ctx.fillStyle = "#ccc";
-		ctx.fillRect(0, 0, example.width, example.height);
-
-		m.drawMap();
-}, false);
-
 start.addEventListener('click', function(){
+	console.log(getCheckedCheckBoxes(".check-born .checkbox"));
+
 	clearInterval(lifeTimer);
 	lifeTimer = setInterval(nextDay, lifeSpeed, m);
 });
@@ -98,7 +123,6 @@ function changeSpeed(){
 
 
 /* Всякие функции поддержки*/
-
 function random(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -210,114 +234,136 @@ map.prototype = {
 		return conditions;
 	},
 
-	b3_s23: function(secCellMap, conditions, i, j){
+	bn_sn: function(secCellMap, conditions, i, j){
 //		var d = "";
+		var b = false;
 		if(this.cellMap[i][j].life == true){
-			if(conditions === 2 || conditions === 3) {
-				secCellMap[i][j].life = true;
-//				d = "живет";
+			for(var k = 0; k <= 8; ++k){
+				b = (b || born_i(getCheckedCheckBoxes(".check-born .checkbox"), conditions, k));
 			}
-			else {
-				secCellMap[i][j].life = false;
-//				d = "умирает";
-			}
+			if(b) {secCellMap[i][j].life = true;}
+			else {secCellMap[i][j].life = false;}
+
 		} else {
-			if(conditions === 3) {
-				secCellMap[i][j].life = true;
-//				d = "рождается";
+			for(var k = 0; k <= 8; ++k){
+				b = (b || born_i(getCheckedCheckBoxes(".check-survive .checkbox"), conditions, k));
 			}
-//			else{
-//				d = "остается мертвой";
+			if(b) {secCellMap[i][j].life = true;}
+			else {secCellMap[i][j].life = false;}
+		}
+		return secCellMap;
+	},
+
+/*
+//
+//	b3_s23: function(secCellMap, conditions, i, j){
+////		var d = "";
+//		if(this.cellMap[i][j].life == true){
+//			if(conditions === 2 || conditions === 3) {
+//				secCellMap[i][j].life = true;
+////				d = "живет";
 //			}
-//				console.log(i + " " + j + " " + d + " при " + conditions);
-		}
-		return secCellMap;
-	},
-
-	b5678_s45678: function(secCellMap, conditions, i, j){
-//		var d = "";
-		if(this.cellMap[i][j].life == true){
-			if(conditions >= 4 && conditions <= 8) {
-				secCellMap[i][j].life = true;
-//				d = "живет";
-			}
-			else {
-				secCellMap[i][j].life = false;
-//				d = "умирает";
-			}
-		} else {
-			if(conditions >= 5 && conditions <= 8) {
-				secCellMap[i][j].life = true;
-//				d = "рождается";
-			}
-//				console.log(i + " " + j + " " + d + " при " + conditions);
-		}
-		return secCellMap;
-	},
-
-	b45678_s234: function(secCellMap, conditions, i, j){
-//		var d = "";
-		if(this.cellMap[i][j].life == true){
-			if(conditions >= 2 && conditions <= 4) {
-				secCellMap[i][j].life = true;
-//				d = "живет";
-			}
-			else {
-				secCellMap[i][j].life = false;
-//				d = "умирает";
-			}
-		} else {
-			if(conditions >= 4 && conditions <= 8) {
-				secCellMap[i][j].life = true;
-//				d = "рождается";
-			}
-//				console.log(i + " " + j + " " + d + " при " + conditions);
-		}
-		return secCellMap;
-	},
-
-	b2468_s1357: function(secCellMap, conditions, i, j){
-//		var d = "";
-		if(this.cellMap[i][j].life == true){
-			if(conditions === 1 || conditions === 3 || conditions === 5 || conditions === 7) {
-				secCellMap[i][j].life = true;
-//				d = "живет";
-			}
-			else {
-				secCellMap[i][j].life = false;
-//				d = "умирает";
-			}
-		} else {
-			if(conditions === 2 || conditions === 4 || conditions === 6 || conditions === 8){
-				secCellMap[i][j].life = true;
-//				d = "рождается";
-			}
-//				console.log(i + " " + j + " " + d + " при " + conditions);
-		}
-		return secCellMap;
-	},
-
-	b12_s1357: function(secCellMap, conditions, i, j){
-//		var d = "";
-		if(this.cellMap[i][j].life == true){
-			if(conditions === 1 || conditions === 3 || conditions === 5 || conditions === 7) {
-				secCellMap[i][j].life = true;
-//				d = "живет";
-			}
-			else {
-				secCellMap[i][j].life = false;
-//				d = "умирает";
-			}
-		} else {
-			if(conditions <= 2){
-				secCellMap[i][j].life = true;
-//				d = "рождается";
-			}
-//				console.log(i + " " + j + " " + d + " при " + conditions);
-		}
-		return secCellMap;
-	},
-
+//			else {
+//				secCellMap[i][j].life = false;
+////				d = "умирает";
+//			}
+//		} else {
+//			if(conditions === 3) {
+//				secCellMap[i][j].life = true;
+////				d = "рождается";
+//			}
+////			else{
+////				d = "остается мертвой";
+////			}
+////				console.log(i + " " + j + " " + d + " при " + conditions);
+//		}
+//		return secCellMap;
+//	},
+//
+//	b5678_s45678: function(secCellMap, conditions, i, j){
+////		var d = "";
+//		if(this.cellMap[i][j].life == true){
+//			if(conditions >= 4 && conditions <= 8) {
+//				secCellMap[i][j].life = true;
+////				d = "живет";
+//			}
+//			else {
+//				secCellMap[i][j].life = false;
+////				d = "умирает";
+//			}
+//		} else {
+//			if(conditions >= 5 && conditions <= 8) {
+//				secCellMap[i][j].life = true;
+////				d = "рождается";
+//			}
+////				console.log(i + " " + j + " " + d + " при " + conditions);
+//		}
+//		return secCellMap;
+//	},
+//
+//	b45678_s234: function(secCellMap, conditions, i, j){
+////		var d = "";
+//		if(this.cellMap[i][j].life == true){
+//			if(conditions >= 2 && conditions <= 4) {
+//				secCellMap[i][j].life = true;
+////				d = "живет";
+//			}
+//			else {
+//				secCellMap[i][j].life = false;
+////				d = "умирает";
+//			}
+//		} else {
+//			if(conditions >= 4 && conditions <= 8) {
+//				secCellMap[i][j].life = true;
+////				d = "рождается";
+//			}
+////				console.log(i + " " + j + " " + d + " при " + conditions);
+//		}
+//		return secCellMap;
+//	},
+//
+//	b2468_s1357: function(secCellMap, conditions, i, j){
+////		var d = "";
+//		if(this.cellMap[i][j].life == true){
+//			if(conditions === 1 || conditions === 3 || conditions === 5 || conditions === 7) {
+//				secCellMap[i][j].life = true;
+////				d = "живет";
+//			}
+//			else {
+//				secCellMap[i][j].life = false;
+////				d = "умирает";
+//			}
+//		} else {
+//			if(conditions === 2 || conditions === 4 || conditions === 6 || conditions === 8){
+//				secCellMap[i][j].life = true;
+////				d = "рождается";
+//			}
+////				console.log(i + " " + j + " " + d + " при " + conditions);
+//		}
+//		return secCellMap;
+//	},
+//
+//	b12_s1357: function(secCellMap, conditions, i, j){
+////		var d = "";
+//		if(this.cellMap[i][j].life == true){
+//			if(conditions === 1 || conditions === 3 || conditions === 5 || conditions === 7) {
+//				secCellMap[i][j].life = true;
+////				d = "живет";
+//			}
+//			else {
+//				secCellMap[i][j].life = false;
+////				d = "умирает";
+//			}
+//		} else {
+//			if(conditions <= 2){
+//				secCellMap[i][j].life = true;
+////				d = "рождается";
+//			}
+////				console.log(i + " " + j + " " + d + " при " + conditions);
+//		}
+//		return secCellMap;
+//	},
+*/
 	dayToggle: function(){
 		var secCellMap = createArr(this.width, this.height);
 		for (var i = 0; i < this.cellMap.length; ++i){
@@ -332,7 +378,7 @@ map.prototype = {
 			for (var j = 0; j < this.cellMap[i].length; ++j){
 				conditions = this.lifeCondition(i, j);
 
-				secCellMap = this.b3_s23(secCellMap, conditions, i, j);
+				secCellMap = this.bn_sn(secCellMap, conditions, i, j);
 				conditions = 0;
 			}
 		}
