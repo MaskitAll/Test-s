@@ -32,7 +32,6 @@ function windowToCanvas(x, y) {
 	};
 }
 
-
 function getCheckedCheckBoxes(ch_container) {
 	var checkboxes = document.querySelectorAll(ch_container);
 	var checkboxesChecked = []; // можно в массиве их хранить, если нужно использовать
@@ -40,7 +39,6 @@ function getCheckedCheckBoxes(ch_container) {
 	for (var i = 0; i < checkboxes.length; i++) {
 	 if (checkboxes[i].checked) {
 		checkboxesChecked.push(i); // положим в массив выбранный
-//		alert(checkboxes[i].value); // делайте что нужно - это для наглядности
 	 }
 	}
 	return checkboxesChecked; // для использования в нужном месте
@@ -87,7 +85,7 @@ example.addEventListener('mousedown', function (e) {
 });
 
 start.addEventListener('click', function(){
-	console.log(getCheckedCheckBoxes(".check-born .checkbox"));
+//	console.log(getCheckedCheckBoxes(".check-born .checkbox"));
 
 	clearInterval(lifeTimer);
 	lifeTimer = setInterval(nextDay, lifeSpeed, m);
