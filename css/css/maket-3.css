@@ -181,6 +181,7 @@ p {
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 0 0.5rem 0.5rem;
+  box-sizing: border-box;
   width: 100%;
 }
 
@@ -223,6 +224,11 @@ p {
 #maket {
   display: block;
   margin: 30px 20%;
+}
+@media screen and (max-width: 750px) {
+  #maket {
+    margin: 30px 0;
+  }
 }
 
 .menu {
@@ -269,7 +275,19 @@ p {
 #canvas {
   height: auto;
 }
-#canvas canvas {
+#canvas .canvas-container {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  box-sizing: border-box;
+}
+#canvas .canvas-container .v-range {
+  flex-grow: 0;
+  margin: 0;
+  transform-origin: left top;
+  transform: rotateZ(-90deg) translate(-100%);
+}
+#canvas .canvas-container canvas {
   width: 100%;
   height: 100%;
   min-height: 20rem;

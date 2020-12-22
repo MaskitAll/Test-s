@@ -9,6 +9,8 @@ var start = document.querySelector("#lifeStart"),
 	next = document.querySelector("#lifeNext"),
 	speed = document.querySelector("#lifeSpeed");
 
+var size_range = document.querySelector("#lifeSize");
+
 var lifeTimer;
 var lifeSpeed = 500;
 
@@ -18,8 +20,8 @@ var lifeSpeed = 500;
 	ctx.fillStyle = "#ccc";
 	ctx.fillRect(0, 0, example.width, example.height);
 
-var w = Math.floor(example.width / 20);
-var h = Math.floor(example.height / 20);
+var w = Math.floor(example.width / (size_range.value * 4));
+var h = Math.floor(example.height / (size_range.value * 4));
 	console.log('w = ' + w + " h = " + h);
 
 
@@ -70,6 +72,8 @@ window.addEventListener(`resize`, event => {
 		m.drawMap();
 }, false);
 
+
+
 example.addEventListener('mousedown', function (e) {
 //	example.addEventListener('mousemove', function (e) {
 
@@ -116,6 +120,22 @@ reset.addEventListener('click', function(){
 function changeSpeed(){
 	lifeSpeed = (20 - speed.value) * 100;
 	start.click();
+};
+
+function changeSize(){
+	example.width = example.offsetWidth;
+	example.height = example.offsetHeight;
+
+	w = Math.floor(example.width / (size_range.value * 5));
+	h = Math.floor(example.height / (size_range.value * 5));
+
+	var m1 = new map(w, h);
+	m1.createMap();
+	m1.fillMapArr(m);
+
+	m = m1;
+
+	m.drawMap();
 };
 
 
@@ -210,6 +230,20 @@ map.prototype = {
 				else {
 					this.cellMap[i][j].Cell(i, j, false);
 				}
+			}
+		}
+	},
+
+	fillMapArr: function(m1){
+		for (var i = 0; i < this.cellMap.length; ++i){
+			for (var j = 0; j <  this.cellMap[i].length; ++j){
+
+				if (i < m1.cellMap.length && j < m1.cellMap[i].length){
+					this.cellMap[i][j] = m1.cellMap[i][j];
+				} else{
+					this.cellMap[i][j].Cell(i, j, false);
+				}
+
 			}
 		}
 	},
