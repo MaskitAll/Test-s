@@ -81,3 +81,98 @@ height:0px
 ::-webkit-scrollbar{
 width: 11px;
 }
+
+
+/*Стилизация ползунков*/
+input[type="range"]{
+	-webkit-appearance: none;
+	cursor: pointer;
+/*	width: 80%;*/
+	height: .2rem;
+	background: #ccc;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
+}
+
+
+input[type="range"]:hover {
+		opacity: 1;
+	}
+
+input[type="range"]::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+
+		width: .8rem;
+		height: 1rem;
+		border-radius: 30%;
+		background: #202020;
+		cursor: pointer;
+	}
+
+input[type="range"]::-moz-range-thumb {
+		width: .8rem;
+		height: 1rem;
+		border-radius: 30%;
+		background: #202020;
+		cursor: pointer;
+	}
+
+/*Стилизация чекбоксов*/
+input[type="checkbox"]{
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+
+input[type="checkbox"]+label {
+	display: inline-flex;
+	align-items: center;
+	user-select: none;
+	cursor: pointer;
+}
+
+input[type="checkbox"]+label::before {
+	content: '';
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	border: 2px solid #ccc;
+
+	border-radius: 30%;
+	margin-right: .3rem;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 50% 50%;
+	transition: .3s;
+}
+input[type="checkbox"]:checked+label::before {
+  border-color: #ccc;
+  background-color: #202020;
+}
+/* стили при наведении курсора на checkbox */
+input[type="checkbox"]:not(:disabled):not(:checked)+label:hover::before {
+	background-color: #aaa;
+}
+/* стили при наведении курсора на checkbox */
+input[type="checkbox"]:not(:disabled):checked+label:hover::before {
+	background-color: #555;
+}
+/* стили для активного состояния чекбокса (при нажатии на него) */
+input[type="checkbox"]:not(:disabled):active+label::before {
+  background-color: #b3d7ff;
+}
+/* стили для чекбокса, находящегося в фокусе */
+input[type="checkbox"]:focus+label::before {
+	background-color: #555;
+}
+/* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
+input[type="checkbox"]:focus:not(:checked)+label::before {
+	background-color: #aaa;
+}
+/* стили для чекбокса, находящегося в состоянии disabled */
+input[type="checkbox"]:disabled+label::before {
+  background-color: #e9ecef;
+}

@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Maket</title>
+	<link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon">
+
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -55,20 +57,16 @@
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere ullam ab architecto ex cumque, consequatur molestias aliquam accusamus earum deserunt vel nobis, fugiat, itaque repellendus magnam doloribus possimus temporibus tempore.</p>
 </div>
 
-<div class="content _block _box _light">
-	<ul class="column">
-		<li>1</li>
-		<li>2</li>
-		<li>3</li>
-		<li>4</li>
-		<li>5</li>
-	</ul>
+
+<!-- Slide -->
+<div id="slide" class="_block _box-insetM _light">
+<div class="slide">
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+	<div>4</div>
 </div>
-
-
-
-
-
+</div>
 
 <!-- Stars -->
 	<div id="star1" class="star _block _box-insetM _light">
@@ -97,46 +95,91 @@
 		<label for="star50"></label>
 	</div>
 
+	<!-- Timer -->
+	<div id="timer" class="_block _box-insetM _light">
+		<div id="check">
+			<div class="check-container session">
+				<span>session lenth</span>
+				<div>
+					<div class="left-arrow arrow"></div>
+					<span class="lenght">5</span>
+					<div class="right-arrow arrow"></div>
+				</div>
+			</div>
+			<div class="check-container break">
+				<span>break lenth</span>
+				<div>
+					<div class="left-arrow arrow"></div>
+					<span class="lenght">5</span>
+					<div class="right-arrow arrow"></div>
+				</div>
+			</div>
+		</div>
 
+		<div class="circle-container">
+			<span class="timer-title">Timer</span>
+			<div class="timer-time">
+				<span class="min">00</span>
+				<span class="sec">00</span>
+			</div>
+		</div>
 
-
-
-
-
-
-
+		<div class = "stop">
+			<svg class="stop_icon">
+				<use xlink:href="#stop"></use>
+			</svg>
+		</div>
+	</div>
 <!-- Canvas -->
 	<div id="canvas" class="_block _box-insetM _light" width = "300" height = "150">
-		<div class="check-born">
-			Выживает:
-			<label><input class="checkbox" type="checkbox" name="born[]" value="ch0" id="ch_b-0">0</label>
-			<label><input class="checkbox" type="checkbox" name="born[]" value="ch1" id="ch_b-1">1</label>
-			<label><input class="checkbox" type="checkbox" name="born[]" value="ch2" id="ch_b-2" checked>2</label>
-			<label><input class="checkbox" type="checkbox" name="born[]" value="ch3" id="ch_b-3" checked>3</label>
-			<label><input class="checkbox" type="checkbox" name="born[]" value="ch4" id="ch_b-4">4</label>
-			<label><input class="checkbox" type="checkbox" name="born[]" value="ch5" id="ch_b-5">5</label>
-			<label><input class="checkbox" type="checkbox" name="born[]" value="ch6" id="ch_b-6">6</label>
-			<label><input class="checkbox" type="checkbox" name="born[]" value="ch7" id="ch_b-7">7</label>
-			<label><input class="checkbox" type="checkbox" name="born[]" value="ch8" id="ch_b-8">8</label>
+		<div class="checkbox-container check-born">
+			<span class="preTab">Выживает:</span>
+			<input class="checkbox" type="checkbox" name="born[]" value="ch0" id="ch_b-0">
+			<label for="ch_b-0">0</label>
+			<input class="checkbox" type="checkbox" name="born[]" value="ch1" id="ch_b-1">
+			<label for="ch_b-1">1</label>
+			<input class="checkbox" type="checkbox" name="born[]" value="ch2" id="ch_b-2" checked>
+			<label for="ch_b-2">2</label>
+			<input class="checkbox" type="checkbox" name="born[]" value="ch3" id="ch_b-3" checked>
+			<label for="ch_b-3">3</label>
+			<input class="checkbox" type="checkbox" name="born[]" value="ch4" id="ch_b-4">
+			<label for="ch_b-4">4</label>
+			<input class="checkbox" type="checkbox" name="born[]" value="ch5" id="ch_b-5">
+			<label for="ch_b-5">5</label>
+			<input class="checkbox" type="checkbox" name="born[]" value="ch6" id="ch_b-6">
+			<label for="ch_b-6">6</label>
+			<input class="checkbox" type="checkbox" name="born[]" value="ch7" id="ch_b-7">
+			<label for="ch_b-7">7</label>
+			<input class="checkbox" type="checkbox" name="born[]" value="ch8" id="ch_b-8">
+			<label for="ch_b-8">8</label>
 		</div>
-		<div class="check-survive">
-			Рождается:
-			<label><input class="checkbox" type="checkbox" name="surv[]" value="ch0" id="ch_s-0">0</label>
-			<label><input class="checkbox" type="checkbox" name="surv[]" value="ch1" id="ch_s-1">1</label>
-			<label><input class="checkbox" type="checkbox" name="surv[]" value="ch2" id="ch_s-2">2</label>
-			<label><input class="checkbox" type="checkbox" name="surv[]" value="ch3" id="ch_s-3" checked>3</label>
-			<label><input class="checkbox" type="checkbox" name="surv[]" value="ch4" id="ch_s-4">4</label>
-			<label><input class="checkbox" type="checkbox" name="surv[]" value="ch5" id="ch_s-5">5</label>
-			<label><input class="checkbox" type="checkbox" name="surv[]" value="ch6" id="ch_s-6">6</label>
-			<label><input class="checkbox" type="checkbox" name="surv[]" value="ch7" id="ch_s-7">7</label>
-			<label><input class="checkbox" type="checkbox" name="surv[]" value="ch8" id="ch_s-8">8</label>
+		<div class="checkbox-container check-survive">
+			<span class="preTab">Рождается:</span>
+			<input class="checkbox" type="checkbox" name="surv[]" value="ch0" id="ch_s-0">
+			<label for="ch_s-0">0</label>
+			<input class="checkbox" type="checkbox" name="surv[]" value="ch1" id="ch_s-1">
+			<label for="ch_s-1">1</label>
+			<input class="checkbox" type="checkbox" name="surv[]" value="ch2" id="ch_s-2">
+			<label for="ch_s-2">2</label>
+			<input class="checkbox" type="checkbox" name="surv[]" value="ch3" id="ch_s-3" checked>
+			<label for="ch_s-3">3</label>
+			<input class="checkbox" type="checkbox" name="surv[]" value="ch4" id="ch_s-4">
+			<label for="ch_s-4">4</label>
+			<input class="checkbox" type="checkbox" name="surv[]" value="ch5" id="ch_s-5">
+			<label for="ch_s-5">5</label>
+			<input class="checkbox" type="checkbox" name="surv[]" value="ch6" id="ch_s-6">
+			<label for="ch_s-6">6</label>
+			<input class="checkbox" type="checkbox" name="surv[]" value="ch7" id="ch_s-7">
+			<label for="ch_s-7">7</label>
+			<input class="checkbox" type="checkbox" name="surv[]" value="ch8" id="ch_s-8">
+			<label for="ch_s-8">8</label>
 		</div>
 
 		<div class="canvas-container">
 			<canvas id="example"></canvas>
-			<label class="v-range">
-			<input type="range" id="lifeSize" oninput="changeSize()" min="1" max="4" value="2">
-			</label>
+			<div class="v-range">
+			<input type="range" id="lifeSize" oninput="changeSize()" min="1" max="5" value="4">
+			</div>
 		</div>
 
 		<div class="btn-container">
@@ -146,7 +189,9 @@
 			<button class="btn" id="lifeRand">Заполнить рандомно</button>
 			<button class="btn" id="lifeReset">Сбросить</button>
 		</div>
+		<div class="h-range">
 		<input type="range" id="lifeSpeed" oninput="changeSpeed()" min="1" max="20" value="15">
+		</div>
 <div class="content">
 <p>Место действия этой игры — «вселенная» — это размеченная на клетки поверхность или плоскость — безграничная, ограниченная, или замкнутая (в пределе — бесконечная плоскость).<br>
 Каждая клетка на этой поверхности может находиться в двух состояниях: быть «живой» (заполненной) или быть «мёртвой» (пустой). Клетка имеет восемь соседей, окружающих её.<br>
@@ -185,6 +230,7 @@
 
 </div>
 
+<script src="/js/timer.js"></script>
 <script src="/js/life-game.js"></script>
 
 </body>

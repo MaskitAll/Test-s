@@ -1,39 +1,40 @@
-	var Ses = document.querySelector(".session .lenght");
-	var Bre = document.querySelector(".break .lenght");
 
-	var Min = document.querySelector(".timer-time .min");
-	var Sec = document.querySelector(".timer-time .sec");
+var Ses = document.querySelector(".session .lenght");
+var Bre = document.querySelector(".break .lenght");
 
-	var CB = document.querySelector(".circle-block");
+var Min = document.querySelector(".timer-time .min");
+var Sec = document.querySelector(".timer-time .sec");
 
-			Min.textContent = todeg(Ses.textContent);
+var CB = document.querySelector(".circle-container");
 
-	var stime = (Min.textContent * 60) + Sec.textContent * 1;
-	var timerid;
-	var runTimer = false;
-	var isSes = true;
+		Min.textContent = todeg(Ses.textContent);
 
-	document.querySelector(".session .left-arrow").addEventListener('click', function(){
-    'use strict';
+var stime = (Min.textContent * 60) + Sec.textContent * 1;
+var timerid;
+var runTimer = false;
+var isSes = true;
+
+	document.querySelector(".session .left-arrow").addEventListener('click', function (){
+	'use strict';
 		if(Ses.textContent > 1)
-			Ses.textContent --;
-			reset();
+			Ses.textContent--;
+			res();
 	});
 
-	document.querySelector(".session .right-arrow").addEventListener('click', function(){
-		Ses.textContent ++;
-			reset();
+	document.querySelector(".session .right-arrow").addEventListener('click', function (){
+		Ses.textContent++;
+			res();
 	});
 
-	document.querySelector(".break .left-arrow").addEventListener('click', function(){
+	document.querySelector(".break .left-arrow").addEventListener('click', function (){
 		if(Bre.textContent > 1)
-			Bre.textContent --;
-			reset();
+			Bre.textContent--;
+			res();
 	});
 
-	document.querySelector(".break .right-arrow").addEventListener('click', function(){
-		Bre.textContent ++;
-			reset();
+	document.querySelector(".break .right-arrow").addEventListener('click', function (){
+		Bre.textContent++;
+			res();
 	});
 
 	CB.addEventListener('click', function(){
@@ -48,8 +49,9 @@
 		timer(runTimer);
 	});
 
-	document.querySelector(".stop_icon").addEventListener('click', function(){
-		reset();
+	document.querySelector(".stop_icon").addEventListener('click', function (){
+		console.log("stop");
+		res();
 	});
 
 	function timer(runTimer){
@@ -76,7 +78,9 @@
 		stom(stime);
 	}
 
-	function reset(){
+	function res(){
+		console.log("stop");
+
 		Min.textContent = todeg(Ses.textContent);
 		Sec.textContent = todeg(0);
 		stime = (Min.textContent * 60) + Sec.textContent * 1;

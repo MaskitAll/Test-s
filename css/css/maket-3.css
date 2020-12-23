@@ -50,18 +50,6 @@ a {
 
 /*FONTS*/
 /*BLOCKS*/
-body {
-  font-family: sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  transition: 0.2s;
-  width: 100vw;
-  min-width: 400px;
-}
-body li {
-  list-style: none;
-}
-
 /*FONTS*/
 h1 {
   font-size: 3.6rem;
@@ -103,6 +91,11 @@ p {
   font-weight: 400;
   line-height: 0.8em;
   font-style: normal;
+}
+
+.preTab {
+  text-align: start;
+  width: 10rem;
 }
 
 /*BLOCKS*/
@@ -156,69 +149,15 @@ p {
   margin-bottom: 1rem;
 }
 
-/*BUTTONS*/
-.btn {
-  padding: 0.5rem;
-  margin: none;
-  border-radius: 0.4rem;
-  background-color: #000;
-  color: #fff;
-  border-color: #fff;
-  cursor: pointer;
-  margin-right: 0.5rem;
-  min-width: 10rem;
-  border: none;
+body {
+  font-family: sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  transition: 0.2s;
+  min-width: 240px;
 }
-.btn:hover {
-  background-color: #4d4d4d;
-}
-.btn:active, .btn:focus {
-  outline: none;
-}
-.btn-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 0 0.5rem 0.5rem;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.star {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 50px 0;
-  transform: rotateY(180deg);
-}
-.star input {
-  display: none;
-}
-.star label:before {
-  content: "";
-  position: relative;
-  display: inline-block;
-  font-family: fontAwesome;
-  font-size: 2rem;
-  color: #ccc;
-  cursor: pointer;
-}
-.star label:after {
-  content: "";
-  position: relative;
-  left: -50%;
-  display: inline-block;
-  font-family: fontAwesome;
-  font-size: 2rem;
-  color: yellow;
-  cursor: pointer;
-  opacity: 0;
-  transition: 0.5s;
-}
-.star label:hover:after, .star label:hover ~ label:after, .star input:checked ~ label:after {
-  opacity: 1;
+body li {
+  list-style: none;
 }
 
 #maket {
@@ -227,7 +166,7 @@ p {
 }
 @media screen and (max-width: 750px) {
   #maket {
-    margin: 30px 0;
+    margin: 30px 3%;
   }
 }
 
@@ -272,6 +211,211 @@ p {
   text-align: justify;
 }
 
+.checkbox-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0 0.5rem 0.5rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+@media screen and (max-width: 400px) {
+  .btn-container {
+    flex-direction: column;
+  }
+}
+
+.btn {
+  padding: 0.5rem;
+  margin: none;
+  border-radius: 0.4rem;
+  background-color: #000;
+  color: #fff;
+  border-color: #fff;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  min-width: 15%;
+  border: none;
+}
+.btn:hover {
+  background-color: #4d4d4d;
+}
+.btn:active, .btn:focus {
+  outline: none;
+}
+
+/**********************
+		SLIDE
+***********************/
+.slide {
+  display: flex;
+  height: 10rem;
+  border-radius: 2rem;
+  color: #fff;
+  box-sizing: border-box;
+}
+.slide div {
+  background-color: #000;
+  border: 0.1rem solid #4d4d4d;
+  width: 10%;
+  padding: 1rem;
+  transition: 1s;
+}
+.slide div:last-child {
+  width: 100%;
+  border-radius: 0 2rem 2rem 0;
+  transition: 1s;
+}
+.slide div:first-child {
+  border-radius: 2rem 0 0 2rem;
+  transition: 1s;
+}
+.slide div:hover {
+  background-color: #4d4d4d;
+  width: 100%;
+  transition: 1s;
+}
+.slide div:hover ~ div {
+  width: 10%;
+  transition: 1s;
+}
+
+/**********************
+		TIMER
+***********************/
+#timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 20rem;
+  text-transform: uppercase;
+}
+#timer #check {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  padding: 2rem;
+}
+#timer .check-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#timer .check-container > div {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+}
+#timer .check-container .arrow {
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: url(/img/backarrow.png) no-repeat 50% 50%;
+  background-size: 90% 90%;
+}
+#timer .check-container .arrow:hover {
+  background-size: 100% 100%;
+}
+#timer .check-container .right-arrow {
+  transform: rotateY(180deg);
+}
+#timer .check-container .lenght {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+#timer .circle-container {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 180px;
+  top: -40px;
+  margin: 0.5rem;
+  overflow: inherit;
+  background-color: rgba(200, 180, 180, 0.4);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+#timer .circle-container:hover {
+  box-shadow: 0 0 10px #4d4d4d;
+  transition: 0.3s;
+}
+#timer .circle-container .timer-title {
+  font-size: 1.3em;
+}
+#timer .circle-container .min::after {
+  content: " : ";
+}
+#timer .stop {
+  position: relative;
+  cursor: pointer;
+  bottom: 50%;
+  left: 25%;
+}
+#timer .stop .stop_icon {
+  position: absolute;
+  width: 7rem;
+  height: 7rem;
+  transition: 0.3s;
+}
+#timer .stop .stop_icon:hover {
+  transform-origin: center;
+  transform: scale(1.2);
+  transition: 0.3s;
+}
+
+/**********************
+		STAR
+***********************/
+.star {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+  transform: rotateY(180deg);
+}
+.star input {
+  display: none;
+}
+.star label:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  font-family: fontAwesome;
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+}
+.star label:after {
+  content: "";
+  position: relative;
+  left: -50%;
+  display: inline-block;
+  font-family: fontAwesome;
+  font-size: 2rem;
+  color: yellow;
+  cursor: pointer;
+  opacity: 0;
+  transition: 0.5s;
+}
+.star label:hover:after, .star label:hover ~ label:after, .star input:checked ~ label:after {
+  opacity: 1;
+}
+
+/**********************
+		LIFE-GAME
+***********************/
 #canvas {
   height: auto;
 }
@@ -281,14 +425,29 @@ p {
   align-content: space-between;
   box-sizing: border-box;
 }
-#canvas .canvas-container .v-range {
+#canvas .canvas-container canvas {
+  cursor: pointer;
+  width: calc(100% - 2rem);
+  height: 100%;
+  min-height: 20rem;
+}
+#canvas .v-range {
+  height: 100%;
+  width: 2rem;
   flex-grow: 0;
   margin: 0;
+  padding: 0.5rem;
+}
+#canvas .v-range input[type=range] {
   transform-origin: left top;
   transform: rotateZ(-90deg) translate(-100%);
 }
-#canvas .canvas-container canvas {
+#canvas .h-range {
+  height: 0.5rem;
   width: 100%;
-  height: 100%;
-  min-height: 20rem;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+}
+#canvas .h-range input[type=range] {
+  width: 80%;
 }
