@@ -139,6 +139,10 @@ body{
 	input[type="checkbox"]{
 //		align-items: flex-end;
 	}
+
+	label{
+		margin-right: 1rem;
+	}
 }
 
 .btn-container{
@@ -212,6 +216,60 @@ body{
 	& div:hover ~ div{
 		width: 10%;
 		transition: 1s;
+	}
+}
+
+/**********************
+		TABs
+***********************/
+.tabs{
+	height: auto;
+	padding: 1rem;
+
+	.tabs_name{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+
+	}
+
+	.tab_item{
+		width: auto;
+		height: auto;
+		padding: 1rem;
+		margin-right: .2rem;
+
+		border-radius: 1rem;
+
+		transition: .4s;
+	}
+
+	.tab_item:hover{
+		background-color: $hover_color-dark;
+		color: $text_color-dark;
+
+		cursor: pointer;
+		user-select: none;
+	}
+
+	.tab_item.active{
+		background-color: $back_color-dark;
+		color: $text_color-dark;
+
+	}
+
+	.tab_item.active:hover{
+		background-color: $hover_color-dark;
+	}
+
+	.tab_text{
+		text-align: justify;
+		display: none;
+		margin-left: 20px;
+	}
+
+	.tab_text.active{
+		display: inline-block;
 	}
 }
 
@@ -334,7 +392,6 @@ body{
 		STAR
 ***********************/
 
-
 .star{
 	position: relative;
 	display: flex;
@@ -380,11 +437,9 @@ body{
 	}
 }
 
-
 /**********************
 		LIFE-GAME
 ***********************/
-
 
 #canvas{
 	height: auto;
@@ -412,6 +467,7 @@ body{
 		padding: .5rem;
 
 		input[type="range"]{
+			min-width: 17rem;
 			transform-origin: left top;
 			transform: rotateZ(-90deg) translate(-100%);
 		}

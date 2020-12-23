@@ -217,6 +217,10 @@ body li {
   justify-content: flex-start;
   flex-wrap: wrap;
 }
+.checkbox-container label {
+  margin-right: 1rem;
+}
+
 .btn-container {
   display: flex;
   flex-direction: row;
@@ -285,6 +289,49 @@ body li {
 .slide div:hover ~ div {
   width: 10%;
   transition: 1s;
+}
+
+/**********************
+		TABs
+***********************/
+.tabs {
+  height: auto;
+  padding: 1rem;
+}
+.tabs .tabs_name {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.tabs .tab_item {
+  width: auto;
+  height: auto;
+  padding: 1rem;
+  margin-right: 0.2rem;
+  border-radius: 1rem;
+  transition: 0.4s;
+}
+.tabs .tab_item:hover {
+  background-color: #4d4d4d;
+  color: #fff;
+  cursor: pointer;
+  -webkit-user-select: none;
+          user-select: none;
+}
+.tabs .tab_item.active {
+  background-color: #000;
+  color: #fff;
+}
+.tabs .tab_item.active:hover {
+  background-color: #4d4d4d;
+}
+.tabs .tab_text {
+  text-align: justify;
+  display: none;
+  margin-left: 20px;
+}
+.tabs .tab_text.active {
+  display: inline-block;
 }
 
 /**********************
@@ -439,6 +486,7 @@ body li {
   padding: 0.5rem;
 }
 #canvas .v-range input[type=range] {
+  min-width: 17rem;
   transform-origin: left top;
   transform: rotateZ(-90deg) translate(-100%);
 }
