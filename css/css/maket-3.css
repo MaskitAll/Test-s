@@ -84,6 +84,8 @@ p {
   font-weight: 400;
   line-height: 1em;
   font-style: normal;
+  -webkit-user-select: text;
+          user-select: text;
 }
 
 .text {
@@ -150,6 +152,8 @@ p {
 }
 
 body {
+  -webkit-user-select: none;
+          user-select: none;
   font-family: sans-serif;
   font-size: 10px;
   font-weight: 600;
@@ -253,6 +257,10 @@ body li {
 }
 .btn:active, .btn:focus {
   outline: none;
+}
+
+.btn-disabled {
+  opacity: 0.5;
 }
 
 /**********************
@@ -460,42 +468,111 @@ body li {
   opacity: 1;
 }
 
+#star2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+}
+#star2 div {
+  float: right;
+}
+#star2 p {
+  margin: 0;
+  padding: 0;
+}
+#star2 .stars {
+  background: url("/img/stars.png");
+  width: 130px;
+  height: 28px;
+  cursor: pointer;
+}
+#star2 .progress {
+  background: #FFEE00;
+  width: 130px;
+  height: 28px;
+  cursor: pointer;
+}
+
 /**********************
 		LIFE-GAME
 ***********************/
-#canvas {
+#canvas,
+#sea-battle {
   height: auto;
 }
-#canvas .canvas-container {
+#canvas .canvas-container,
+#sea-battle .canvas-container {
   display: flex;
   flex-direction: row;
   align-content: space-between;
   box-sizing: border-box;
 }
-#canvas .canvas-container canvas {
+#canvas .canvas-container canvas,
+#sea-battle .canvas-container canvas {
   cursor: pointer;
   width: calc(100% - 2rem);
   height: 100%;
   min-height: 20rem;
 }
-#canvas .v-range {
+#canvas .v-range,
+#sea-battle .v-range {
   height: 100%;
   width: 2rem;
   flex-grow: 0;
   margin: 0;
   padding: 0.5rem;
 }
-#canvas .v-range input[type=range] {
+#canvas .v-range input[type=range],
+#sea-battle .v-range input[type=range] {
   min-width: 17rem;
   transform-origin: left top;
   transform: rotateZ(-90deg) translate(-100%);
 }
-#canvas .h-range {
+#canvas .h-range,
+#sea-battle .h-range {
   height: 0.5rem;
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 2rem;
 }
-#canvas .h-range input[type=range] {
+#canvas .h-range input[type=range],
+#sea-battle .h-range input[type=range] {
   width: 80%;
+}
+
+.canvas-container {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  box-sizing: border-box;
+}
+.canvas-container canvas {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  min-height: 20rem;
+}
+
+/**********************
+		SLIDER
+***********************/
+.slider_container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.slider_line {
+  display: flex;
+  width: auto;
+  transition: 0.2s;
+}
+
+.slider-item {
+  padding: 1rem;
+  margin: 0rem;
+  border-radius: 1rem;
+  height: 10rem;
+  box-sizing: border-box;
 }

@@ -32,6 +32,8 @@
 
 <body>
 
+
+<!-- Maket -->
 <div id="maket" class="column text _box-hangX _dark">
 
 <!-- Menu -->
@@ -109,6 +111,7 @@
 		<label for="star5"></label>
 	</div>
 
+<!--
 	<div id="star2" class="star _block _box-insetM _light">
 		<input id="star10" type="radio" name="star2">
 		<label for="star10"></label>
@@ -121,6 +124,14 @@
 		<input id="star50" type="radio" name="star2">
 		<label for="star50"></label>
 	</div>
+-->
+
+	<div id="star2" class="_block _box-insetM _light">
+		<div>
+			<div class="stars"></div><p class="progress" id="p1"></p>
+		</div>
+	</div>
+
 
 	<!-- Timer -->
 	<div id="timer" class="_block _box-insetM _light">
@@ -227,9 +238,8 @@
 Распределение живых клеток в начале игры называется первым поколением. Каждое следующее поколение рассчитывается на основе предыдущего по таким правилам:<br>
 в пустой (мёртвой) клетке, рядом с которой ровно три живые клетки, зарождается жизнь;<br>
 если у живой клетки есть две или три живые соседки, то эта клетка продолжает жить;<br>
-в противном случае, если соседей меньше двух или больше трёх, клетка умирает («от одиночества» или «от перенаселённости»)
-Игра прекращается, если
-на поле не останется ни одной «живой» клетки
+в противном случае, если соседей меньше двух или больше трёх, клетка умирает («от одиночества» или «от перенаселённости»)<br>
+Игра прекращается, если на поле не останется ни одной «живой» клетки
 конфигурация на очередном шаге в точности (без сдвигов и поворотов) повторит себя же на одном из более ранних шагов (складывается периодическая конфигурация)
 при очередном шаге ни одна из клеток не меняет своего состояния (складывается стабильная конфигурация;
 предыдущее правило, вырожденное до одного шага назад)<br>
@@ -237,30 +247,58 @@
 
 Игрок не принимает прямого участия в игре, а лишь расставляет или генерирует начальную конфигурацию «живых» клеток, которые затем взаимодействуют согласно правилам уже без его участия (он является наблюдателем).</p>
 </div>
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
+
+
+
+<!-- Canvas -->
+<div id="sea-battle" class="_block _box-insetM _light" width = "300" height = "150">
+	<div class="canvas-container">
+		<canvas id="sea-battle-canvas"></canvas>
+<!--
+		<canvas id="sea-battle-enemy-canvas"></canvas>
+		<canvas id="sea-battle-ship-canvas"></canvas>
+-->
+	</div>
+</div>
+
+
+
+<!-- Slider -->
+<div id="slider" class="_block _box-insetM _light">
+	<div class="slider_container">
+		<div class="slider_line">
+			<div class="slider-item _dark"></div>
+			<div class="slider-item _bee"></div>
+			<div class="slider-item _dark"></div>
+			<div class="slider-item _bee"></div>
+
+			<div class="slider-item _dark"></div>
+			<div class="slider-item _bee"></div>
+			<div class="slider-item _dark"></div>
+			<div class="slider-item _bee"></div>
+
+			<div class="slider-item _dark"></div>
+			<div class="slider-item _bee"></div>
+			<div class="slider-item _dark"></div>
+
+		</div>
+	</div>
+	<div class="btn-container">
+		<button id="slider-left" class="btn">Left</button>
+		<button id="slider-right" class="btn">Right</button>
+	</div>
+</div>
+
+
+</div><!-- /Maket -->
+
 
 <script src="/js/timer.js"></script>
 <script src="/js/tabs.js"></script>
+<script src="/js/stars.js"></script>
 <script src="/js/life-game.js"></script>
+<!--<script src="/js/sea-battle.js"></script>-->
+<script src="/js/slider.js"></script>
 
 </body>

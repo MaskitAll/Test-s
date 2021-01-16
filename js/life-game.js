@@ -192,7 +192,10 @@ cell.prototype = {
 
 	drawCell: function(color = "#000"){
 		ctx.fillStyle = color;
-		ctx.fillRect(Math.floor(this.x * example.width / w), Math.floor(this.y * example.height / h), Math.floor(example.width / w) - 2, Math.floor(example.height / h) - 2);
+		ctx.fillRect(Math.floor(this.x * example.width / w),
+					 Math.floor(this.y * example.height / h),
+					 Math.floor(example.width / w) - 2,
+					 Math.floor(example.height / h) - 2);
 	}
 };
 
@@ -247,6 +250,12 @@ map.prototype = {
 		}
 	},
 
+
+
+
+
+
+
 	lifeCondition: function(i, j){
 		var conditions = 0;
 		if(i > 0 && j > 0 				&& this.cellMap[i - 1][j - 1].life) {++conditions;}
@@ -264,6 +273,13 @@ map.prototype = {
 										   && this.cellMap[i + 1][j + 1].life)	{++conditions;}
 		return conditions;
 	},
+
+
+
+
+
+
+
 
 	bn_sn: function(secCellMap, conditions, i, j){
 //		var d = "";

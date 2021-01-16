@@ -4,6 +4,7 @@
 	src: local('Book Antiqua'),
 	url(../fonts/bookAntiqua.ttf),
 	format('ttf');
+//	font-display: fallback;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
