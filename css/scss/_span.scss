@@ -1,3 +1,5 @@
+@import 'font';
+
 /*FONTs*/
 @font-face {
 	font-family: 'Book Antiqua';
@@ -53,6 +55,12 @@ ul{
 
 	@extend %bookAntiqua;
 	@include font(2.2rem, 400, 2.7rem, normal);
+}
+
+#pre-nav{
+	font-weight: 800;
+	font-size: 1.5rem;
+	background-color: red;
 }
 
 

@@ -30,17 +30,31 @@
 		<nav class="header__nav">
 			<div class="burger" v-on:click="isShowNav ? isShowNav = 0 : isShowNav = 1"></div>
 			<div class="nav__links" v-if="isShowNav">
-				<a href="#">Подробнее</a>
-				<a href="html/other/maket-3.html">Примеры</a>
+				<a href="#" onclick = 'togglePop_up("window-about")'>Подробнее</a>
+				<a href="html/other/maket-3.html" class="pre-nav">Примеры</a>
 				<a href="#">Магазин</a>
 				<a href="#">О нас</a>
 			</div>
 		</nav>
+
+<!--	Всплэвающее окно с пояснениями	-->
+		<div id = "window-about" class="window-pop_up close-pop_up">
+			<div class="window-shadow" onclick='togglePop_up("window-about")'></div>
+			<div class="window-content">
+				<div class="window-close_btn" onclick='togglePop_up("window-about")'>&#10008;</div>
+				<div class="window-text">
+					<span class = "window-title">Подробности</span><br>
+					<p>На этой странице находятся решения задач по верстке из сборника.</p>
+					<a href="http://www.itmathrepetitor.ru/zadachi-po-html-i-css/">Ссылка на сборник</a>
+				</div>
+			</div>
+		</div>
 	</header>
 
 
+
 	<!-- Main content -->
-	   <main>
+		   <main>
 		   <div class="container">
 		<ol>
 			<li> Задачи по HTML без использования стилей
@@ -61,8 +75,6 @@
 					</li>
 				</ol>
 			</li>
-
-
 			<li> Задачи по HTML/CSS
 				<ol>
 					<li v-for="page in htmlWithStyles">Задача: <a :href = "page.link" v-on:click.prevent="showCard(page.id, htmlWithStyles)">{{ page.name }}</a>
@@ -93,8 +105,9 @@
 				</ol>
 			</li>
 		</ol>
-	  </div>
-	   </main>
+		  </div>
+
+	  </main>
 
 	<!-- Footer -->
 	   <footer>

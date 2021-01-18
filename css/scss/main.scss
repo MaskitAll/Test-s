@@ -1,8 +1,11 @@
-@import 'font';
+@import '_font';
+
+$theme: light;
 
 #main{
 	@include colomn;
 	justify-content: space-between;
+
 
 	box-sizing: content-box;
 	height: 100vh;
@@ -15,12 +18,118 @@
 	}
 }
 
+h1{
+	@include text(6.4rem, $theme);
+}
+
+h2{
+	@include text(4.8rem, $theme);
+}
+
+h3{
+	@include text(3.6rem, $theme);
+}
+
+h4{
+	@include text(2.4rem, $theme);
+}
+
+p{
+	@include text(1.7rem, $theme);
+}
+
+.close-pop_up {
+	display: none;
+}
+
+.window-pop_up{
+	z-index: 100;
+	user-select: none;
+
+	position: fixed;
+
+	width: 100vw;
+	height: 100vh;
+
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, .3);
+
+	.window-shadow{
+		position: absolute;
+		width: 100vw;
+		height: 100vh;
+
+		top: 0;
+		left: 0;
+	}
+
+	.window-content{
+		position: relative;
+		padding: 3rem;
+		border-radius: 2rem;
+
+		width: 50%;
+		height: 50%;
+
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		background-color: $color_back;
+
+		.window-text{
+
+			border: 2px solid #000;
+			border-radius: 1rem;
+			width: 100%;
+			height: 100%;
+			padding: 1rem;
+
+			box-sizing: border-box;
+
+		}
+
+		.window-title{
+			display: inline-block;
+
+			font-size: 3.6rem;
+			font-weight: 700;
+			margin-bottom: 2rem;
+		}
+
+		a {
+			font-size: 2rem;
+			border-bottom: 2px solid #000;
+		}
+
+		.window-close_btn{
+			content: "";
+			position: absolute;
+			cursor: pointer;
+			text-align: center;
+
+			top: 0;
+			left: calc(100% - 1rem);
+			width: 20px;
+			height: 20px;
+
+			border-radius: 50%;
+			border: 2px solid #000;
+			background-color: red;
+
+			transition: .2s;
+			&:hover{
+				transform: scale(1.2);
+			}
+		}
+	}
+}
 
 /**************
 	HEADER
 ***************/
 header{
-	$theme: light;
 
 	@include row;
 	@include theme($theme);
@@ -67,10 +176,19 @@ header{
 				&:hover{
 					transform: scale(1.2);
 				}
-
+			}
+			.pre-nav {
+				border: 2px dashed #000;
+				border-radius: 3rem;
+				&:hover{
+					transform: scale(1);
+					background-color: $color_font-dark;
+				}
 			}
 		}/*nav_links*/
 	}/*nav*/
+
+
 }/*header*/
 
 

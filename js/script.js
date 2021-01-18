@@ -461,7 +461,10 @@ var Vue = new Vue({
 });
 
 
-
+function togglePop_up(elem){
+	var el = document.getElementById(elem);
+	el.classList.toggle("close-pop_up");
+}
 
 
 
