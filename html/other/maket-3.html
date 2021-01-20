@@ -98,7 +98,7 @@
 </div>
 
 <!-- Stars -->
-	<div id="star1" class="star _block _box-insetM _light">
+	<div id="star_css" class="star _block _box-insetM _light">
 		<input id="star1" type="radio" name="star">
 		<label for="star1"></label>
 		<input id="star2" type="radio" name="star">
@@ -126,7 +126,8 @@
 	</div>
 -->
 
-	<div id="star2" class="_block _box-insetM _light">
+	<div id="star_js" class="_block _box-insetM _light">
+
 		<div>
 			<div class="stars"></div><p class="progress" id="p1"></p>
 		</div>
@@ -135,6 +136,8 @@
 
 	<!-- Timer -->
 	<div id="timer" class="_block _box-insetM _light">
+		<h2 style="margin-bottom: 1rem;">Таймер</h2>
+
 		<div id="check">
 			<div class="check-container session">
 				<span>session lenth</span>
@@ -170,8 +173,46 @@
 	</div>
 
 
+	<!-- Guess the number  -->
+	<div id="guess_the_number" class="_block _box-insetM _light">
+		<h2 style="margin-bottom: 1rem;">Игра "Угадай число"</h2>
+
+		<div class="GTN-input_container">
+			<div class="GTN-one_number">
+				<button class="GTN-number_up">&uArr;</button>
+				<input 	class="GTN-number" type="number" readonly value="5">
+				<button class="GTN-number_down">&dArr;</button>
+			</div>
+			<div class="GTN-one_number">
+				<button class="GTN-number_up">&uArr;</button>
+				<input 	class="GTN-number" type="number" readonly value="5">
+				<button class="GTN-number_down">&dArr;</button>
+			</div>
+			<div class="GTN-one_number">
+				<button class="GTN-number_up">&uArr;</button>
+				<input 	class="GTN-number" type="number" readonly value="5">
+				<button class="GTN-number_down">&dArr;</button>
+			</div>
+			<div class="GTN-one_number">
+				<button class="GTN-number_up">&uArr;</button>
+				<input 	class="GTN-number" type="number" readonly value="5">
+				<button class="GTN-number_down">&dArr;</button>
+			</div>
+		</div>
+
+		<button id="GTN-submit" class="btn">Проверить результат</button>
+		<button id="GTN-reset" class="btn">Начать заново</button>
+
+		<div id="GTN-result_message">Подберите число, которое загадал компьютер</div>
+
+
+	</div>
+
+
+
 <!-- Canvas -->
 	<div id="canvas" class="_block _box-insetM _light" width = "300" height = "150">
+		<h2 style="margin-bottom: 1rem;">Игра "Жизнь"</h2>
 		<div class="checkbox-container check-born">
 			<span class="preTab">Выживает:</span>
 			<input class="checkbox" type="checkbox" name="born[]" value="ch0" id="ch_b-0">
@@ -253,6 +294,8 @@
 
 <!-- Canvas -->
 <div id="sea-battle" class="_block _box-insetM _light" width = "300" height = "150">
+	<h2 style="margin-bottom: 1rem;">Игра "Морской бой"</h2>
+
 	<div class="canvas-container">
 		<canvas id="sea-battle-canvas"></canvas>
 <!--
@@ -297,6 +340,7 @@
 <script src="/js/timer.js"></script>
 <script src="/js/tabs.js"></script>
 <script src="/js/stars.js"></script>
+<script src="/js/guess-the-number.js"></script>
 <script src="/js/life-game.js"></script>
 <!--<script src="/js/sea-battle.js"></script>-->
 <script src="/js/slider.js"></script>

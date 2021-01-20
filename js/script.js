@@ -457,11 +457,17 @@ var Vue = new Vue({
 				this.degF = 0;
 				this.degD = 180;
 			},
+
 		}
 });
 
+/*************************************************
+ВЫВОДИТ ВСПЛЫВАЮЩЕЕ ОКНО ПОВЕРХ СТРАНИЦЫ
+В ПЕРЕМЕННУЮ ПОДАЕТСЯ ID ЭЛЕМЕНТА ОКНА
+**************************************************/
 
 function togglePop_up(elem){
+	event.preventDefault();
 	var el = document.getElementById(elem);
 	el.classList.toggle("close-pop_up");
 }

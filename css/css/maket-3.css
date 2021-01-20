@@ -392,11 +392,9 @@ body li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 180px;
-  height: 180px;
-  top: -40px;
-  margin: 0.5rem;
-  overflow: inherit;
+  min-width: 10rem;
+  min-height: 10rem;
+  top: -5rem;
   background-color: rgba(200, 180, 180, 0.4);
   border-radius: 50%;
   transition: 0.3s;
@@ -414,7 +412,7 @@ body li {
 #timer .stop {
   position: relative;
   cursor: pointer;
-  bottom: 50%;
+  bottom: 60%;
   left: 25%;
 }
 #timer .stop .stop_icon {
@@ -432,7 +430,7 @@ body li {
 /**********************
 		STAR
 ***********************/
-.star {
+#star_css {
   position: relative;
   display: flex;
   align-items: center;
@@ -440,10 +438,10 @@ body li {
   padding: 50px 0;
   transform: rotateY(180deg);
 }
-.star input {
+#star_css input {
   display: none;
 }
-.star label:before {
+#star_css label:before {
   content: "";
   position: relative;
   display: inline-block;
@@ -452,7 +450,7 @@ body li {
   color: #ccc;
   cursor: pointer;
 }
-.star label:after {
+#star_css label:after {
   content: "";
   position: relative;
   left: -50%;
@@ -464,31 +462,31 @@ body li {
   opacity: 0;
   transition: 0.5s;
 }
-.star label:hover:after, .star label:hover ~ label:after, .star input:checked ~ label:after {
+#star_css label:hover:after, #star_css label:hover ~ label:after, #star_css input:checked ~ label:after {
   opacity: 1;
 }
 
-#star2 {
+#star_js {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 50px 0;
 }
-#star2 div {
+#star_js div {
   float: right;
 }
-#star2 p {
+#star_js p {
   margin: 0;
   padding: 0;
 }
-#star2 .stars {
+#star_js .stars {
   background: url("/img/stars.png");
   width: 130px;
   height: 28px;
   cursor: pointer;
 }
-#star2 .progress {
+#star_js .progress {
   background: #FFEE00;
   width: 130px;
   height: 28px;
@@ -553,6 +551,50 @@ body li {
   width: 100%;
   height: 100%;
   min-height: 20rem;
+}
+
+/**********************
+		SLIDER
+***********************/
+#guess_the_number .GTN-input_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  /* Для Chrome */
+  /* Для Firefox */
+}
+#guess_the_number .GTN-input_container .GTN-one_number {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  max-width: 25%;
+}
+#guess_the_number .GTN-input_container input[type=number]::-webkit-inner-spin-button,
+#guess_the_number .GTN-input_container input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+#guess_the_number .GTN-input_container input[type=number] {
+  -moz-appearance: textfield;
+  cursor: default;
+}
+#guess_the_number .GTN-input_container .GTN-number_up,
+#guess_the_number .GTN-input_container .GTN-number_down,
+#guess_the_number .GTN-input_container .GTN-number {
+  text-align: center;
+  height: 3rem;
+  box-sizing: border-box;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 0rem;
+  font-style: normal;
+}
+#guess_the_number #GTN-result_message {
+  margin: 1rem 0;
 }
 
 /**********************
