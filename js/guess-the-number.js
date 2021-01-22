@@ -3,7 +3,7 @@ const GTN = document.querySelector("#guess_the_number");
 
 const GTN_Container = GTN.querySelector(".GTN-input_container");
 const GTN_Submit	= GTN.querySelector("#GTN-submit");
-const GTN_Reset	= GTN.querySelector("#GTN-reset");
+const GTN_Reset		= GTN.querySelector("#GTN-reset");
 const GTN_Controller = GTN.querySelectorAll(".GTN-one_number");
 const GTN_Mesage 	= GTN.querySelector("#GTN-result_message");
 
@@ -30,6 +30,8 @@ for (let controller of GTN_Controller) {
 		var digit = getController(controller).Digit.value;
 		if(digit < 9){
 			getController(controller).Digit.value++;
+		} else {
+			getController(controller).Digit.value = 0;
 		}
 	}
 }
@@ -43,9 +45,15 @@ for (let controller of GTN_Controller) {
 		var digit = getController(controller).Digit.value;
 		if(digit > 0){
 			getController(controller).Digit.value--;
+		} else {
+			getController(controller).Digit.value = 9;
 		}
 	}
 }
+
+/***************************
+Получение числа игрока
+***************************/
 
 function sumDigits(){
 	var sum = "";
@@ -93,7 +101,7 @@ GTN_Submit.addEventListener('click', function(){
 
 	}
 	if(playerDigit === computerDigit) {
-		sendMessage("Поздравляю, вы угадали число!\nЧисло попыток: " + countOfAttempts);
+		sendMessage("Поздравляю, вы угадали число!<br><br> Количество попыток: " + countOfAttempts);
 		GTN_Mesage.style.color='green';
 	}
 });

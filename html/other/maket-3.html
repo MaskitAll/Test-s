@@ -36,25 +36,35 @@
 <!-- Maket -->
 <div id="maket" class="column text _box-hangX _dark">
 
-<!-- Menu -->
-	<div id="menu" class="">
-		<ul class="menu row">
-			<li><a href="/index.html">Домой</a></li>
-			<li><a href="#">Фото</a></li>
-			<li><a href="#">Продукты</a>
-				<ul>
-					<li><a href="#">Продукт 1</a></li>
-					<li><a href="#">Продукт 2</a></li>
-					<li><a href="#">Продукт 3</a></li>
-					<li><a href="#">Продукт 4</a></li>
-				</ul>
-			</li>
-			<li><a href="#">Контакты</a></li>
-
-			<li class="bye btn"><a href="#">Купить</a></li>
-		</ul>
+<!--Кнопка вверх-->
+	<div id="scrollToTop" class="on_top-arrow _dark" v-if="isShowPage != 0"  onclick="goUp()">
+		<svg viewBox="0 0 27 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M27 14.4985C27 14.1145 26.853 13.7305 26.5605 13.438L14.5607 1.43863C13.9742 0.852162 13.0262 0.852162 12.4397 1.43863L0.439868 13.438C-0.146624 14.0245 -0.146624 14.9725 0.439868 15.5589C1.02636 16.1454 1.97435 16.1454 2.56084 15.5589L13.5002 4.61997L24.4395 15.5589C25.026 16.1454 25.974 16.1454 26.5605 15.5589C26.853 15.2664 27 14.8825 27 14.4985Z" fill="white"/>
+		</svg>
 	</div>
 
+
+<!-- Menu -->
+<div id="menu" class="">
+	<ul class="menu row">
+		<li><a href="/index.html">Домой</a></li>
+		<li><a href="#">Фото</a></li>
+		<li><a href="#">Продукты</a>
+			<ul>
+				<li><a href="#">Продукт 1</a></li>
+				<li><a href="#">Продукт 2</a></li>
+				<li><a href="#">Продукт 3</a></li>
+				<li><a href="#">Продукт 4</a></li>
+			</ul>
+		</li>
+		<li><a href="#">Контакты</a></li>
+
+		<li class="bye btn"><a href="#">Купить</a></li>
+	</ul>
+</div>
+
+
+<!-- Text -->
 <div class="content _block _box-insetS _light">
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere ullam ab architecto ex cumque, consequatur molestias aliquam accusamus earum deserunt vel nobis, fugiat, itaque repellendus magnam doloribus possimus temporibus tempore.</p>
 </div>
@@ -337,6 +347,7 @@
 </div><!-- /Maket -->
 
 
+<script src="/js/scroll.js"></script>
 <script src="/js/timer.js"></script>
 <script src="/js/tabs.js"></script>
 <script src="/js/stars.js"></script>

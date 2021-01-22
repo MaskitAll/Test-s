@@ -1,5 +1,6 @@
 @import '_mixin';
-
+@import 'scroll';
+@import 'animations';
 
 /*FONTS*/
 
@@ -80,8 +81,7 @@ body{
 	font-size: 10px;
 	font-weight: 600;
 	transition: .2s;
-//	width: 100vw;
-	min-width: 240px;
+	min-width: 520px;
 	li{
 		list-style: none;
 	}
@@ -229,7 +229,7 @@ body{
 /**********************
 		TABs
 ***********************/
-.tabs{
+#tabs{
 	height: auto;
 	padding: 1rem;
 
@@ -238,46 +238,67 @@ body{
 		flex-direction: row;
 		flex-wrap: nowrap;
 
+//		@media screen and (max-width: 520px){
+//			@include font(1rem, 400, 1rem);
+//			flex-direction: column;
+//			flex-wrap: wrap;
+//			width: 20%;
+////			float: left;
+//		}
+
+		.tab_item{
+			display: flex;
+			flex-direction: column;
+
+			width: auto;
+			height: auto;
+			padding: 1rem;
+			margin-right: .2rem;
+
+			border-radius: 1rem;
+
+			transition: .4s;
+		}
+
+		.tab_item:hover{
+			background-color: $hover_color-dark;
+			color: $text_color-dark;
+
+			cursor: pointer;
+			user-select: none;
+		}
+
+		.tab_item.active{
+			background-color: $back_color-dark;
+			color: $text_color-dark;
+
+		}
+
+		.tab_item.active:hover{
+			background-color: $hover_color-dark;
+		}
 	}
 
-	.tab_item{
-		width: auto;
-		height: auto;
-		padding: 1rem;
-		margin-right: .2rem;
+	.tabs_text{
+		.tab_text{
+			text-align: justify;
+			display: none;
+			margin-left: 20px;
+		}
 
-		border-radius: 1rem;
+		.tab_text.active{
+			display: inline-block;
+		}
 
-		transition: .4s;
+//	@media screen and (max-width: 520px){
+////		float: right;
+//	}
 	}
-
-	.tab_item:hover{
-		background-color: $hover_color-dark;
-		color: $text_color-dark;
-
-		cursor: pointer;
-		user-select: none;
-	}
-
-	.tab_item.active{
-		background-color: $back_color-dark;
-		color: $text_color-dark;
-
-	}
-
-	.tab_item.active:hover{
-		background-color: $hover_color-dark;
-	}
-
-	.tab_text{
-		text-align: justify;
-		display: none;
-		margin-left: 20px;
-	}
-
-	.tab_text.active{
-		display: inline-block;
-	}
+//
+//	@media screen and (max-width: 520px){
+//		flex-direction: row;
+//		flex-wrap: nowrap;
+//	}
 }
 
 /**********************
@@ -466,9 +487,6 @@ body{
 	}
 }
 
-
-
-
 /**********************
 		LIFE-GAME
 ***********************/
@@ -493,13 +511,13 @@ body{
 
 	.v-range{
 		height: 100%;
-//		width: 100%;
 		width: 2rem;
 		flex-grow: 0;
 		margin: 0;
 		padding: .5rem;
 
 		input[type="range"]{
+			position: absolute;
 			min-width: 17rem;
 			transform-origin: left top;
 			transform: rotateZ(-90deg) translate(-100%);
@@ -515,20 +533,6 @@ body{
 		input[type="range"]{
 			width: 80%;
 		}
-	}
-}
-
-.canvas-container{
-	display: flex;
-	flex-direction: row;
-	align-content: space-between;
-	box-sizing: border-box;
-
-	canvas{
-		cursor: pointer;
-		width: 100%;
-		height: 100%;
-		min-height: 20rem;
 	}
 }
 
