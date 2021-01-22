@@ -2,6 +2,12 @@
 
 $theme: light;
 
+body{
+	@media screen and (max-width: 750px){
+		zoom: 50%;
+	}
+}
+
 #main{
 	@include colomn;
 	justify-content: space-between;

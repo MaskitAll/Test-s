@@ -213,10 +213,14 @@ body {
   font-weight: 600;
   transition: 0.2s;
   min-width: 520px;
-  zoom: 60%;
 }
 body li {
   list-style: none;
+}
+@media screen and (max-width: 750px) {
+  body {
+    zoom: 60%;
+  }
 }
 
 #maket {

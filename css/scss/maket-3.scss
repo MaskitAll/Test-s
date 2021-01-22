@@ -82,9 +82,13 @@ body{
 	font-weight: 600;
 	transition: .2s;
 	min-width: 520px;
-	zoom: 60%;
+
 	li{
 		list-style: none;
+	}
+
+	@media screen and (max-width: 750px){
+		zoom: 60%;
 	}
 }
 
