@@ -18,9 +18,8 @@ $message = urldecode($message);
 
 $name = trim($name);
 $message = trim($message);
-
-if (mail("wovas20401@alicdh.com", $theme, "Имя: ".$name.".\n ".$message ,"From: maskit-zzz@list.ru  \r\n"))
- { echo "сообщение успешно отправлено";
+if (mail("maskit-zzz@list.ru", $theme, "ФИО: ".$name.".\n Message: ".$message ,"\nFrom: example2@mail.ru \r\n")) {
+     echo "сообщение успешно отправлено";
 } else {
     echo "при отправке сообщения возникли ошибки";
 }
