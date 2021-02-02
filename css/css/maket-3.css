@@ -318,12 +318,17 @@ body li {
   outline: none;
 }
 
+.btn-submit {
+  width: auto;
+  float: right;
+}
+
 .btn-disabled {
   opacity: 0.5;
 }
 
 /**********************
-		SLIDE
+        SLIDE
 ***********************/
 .slide {
   display: flex;
@@ -359,7 +364,7 @@ body li {
 }
 
 /**********************
-		TABs
+        TABs
 ***********************/
 #tabs {
   height: auto;
@@ -404,7 +409,7 @@ body li {
 }
 
 /**********************
-		TIMER
+        TIMER
 ***********************/
 #timer {
   display: flex;
@@ -489,7 +494,7 @@ body li {
 }
 
 /**********************
-		STAR
+        STAR
 ***********************/
 #star_css {
   position: relative;
@@ -555,7 +560,7 @@ body li {
 }
 
 /**********************
-		LIFE-GAME
+        LIFE-GAME
 ***********************/
 #canvas,
 #sea-battle {
@@ -603,7 +608,7 @@ body li {
 }
 
 /**********************
-		SLIDER
+        SLIDER
 ***********************/
 #guess_the_number .GTN-input_container {
   display: flex;
@@ -647,7 +652,7 @@ body li {
 }
 
 /**********************
-		SLIDER
+        SLIDER
 ***********************/
 .slider_container {
   overflow: hidden;

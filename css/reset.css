@@ -58,7 +58,7 @@ height:0px
 }
 
 ::-webkit-scrollbar-track {
-	background-color: inherit;
+    background-color: inherit;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -82,72 +82,122 @@ height:0px
 width: 11px;
 }
 
+/*Стилизация button*/
+button{
+    cursor: pointer;
+}
+
+/*Стилизация submit*/
+button{
+    cursor: pointer;
+    width: auto;
+}
+
+/*Стилизация input*/
+input[type="text"]{
+    font-family: serif;
+    font-size: 1rem;
+    font-weight: 500;
+
+    padding: 1rem;
+    margin: .5rem 0;
+
+    border: 1px solid black;
+    border-radius: 1rem;
+}
+
+input[type="text"]:active,
+input[type="text"]:focus
+{
+    outline: none;
+}
+
+/*Стилизация input textarea*/
+textarea{
+    resize: none;
+
+    font-family: serif;
+    font-size: 1rem;
+    font-weight: 500;
+
+    padding: 1rem;
+    margin: .5rem 0;
+
+    border: 1px solid black;
+    border-radius: 1rem;
+}
+
+textarea:active,
+textarea:focus
+{
+    outline: none;
+}
 
 /*Стилизация ползунков*/
 input[type="range"]{
-	-webkit-appearance: none;
-	cursor: pointer;
+    -webkit-appearance: none;
+    cursor: pointer;
 /*	width: 80%;*/
-	height: .2rem;
-	background: #ccc;
-	outline: none;
-	opacity: 0.7;
-	-webkit-transition: .2s;
-	transition: opacity .2s;
+    height: .2rem;
+    background: #ccc;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
 }
 
 
 input[type="range"]:hover {
-		opacity: 1;
-	}
+        opacity: 1;
+    }
 
 input[type="range"]::-webkit-slider-thumb {
-		-webkit-appearance: none;
-		appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
 
-		width: .8rem;
-		height: 1rem;
-		border-radius: 30%;
-		background: #202020;
-		cursor: pointer;
-	}
+        width: .8rem;
+        height: 1rem;
+        border-radius: 30%;
+        background: #202020;
+        cursor: pointer;
+    }
 
 input[type="range"]::-moz-range-thumb {
-		width: .8rem;
-		height: 1rem;
-		border-radius: 30%;
-		background: #202020;
-		cursor: pointer;
-	}
+        width: .8rem;
+        height: 1rem;
+        border-radius: 30%;
+        background: #202020;
+        cursor: pointer;
+    }
 
 /*Стилизация чекбоксов*/
 input[type="checkbox"]{
-	position: absolute;
-	z-index: -1;
-	opacity: 0;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
 }
 
 input[type="checkbox"]+label {
-	display: inline-flex;
-	align-items: center;
-	user-select: none;
-	cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
 }
 
 input[type="checkbox"]+label::before {
-	content: '';
-	display: inline-block;
-	width: 1rem;
-	height: 1rem;
-	border: 2px solid #ccc;
-	box-sizing: border-box;
+    content: '';
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
 
-	border-radius: 30%;
-	margin-right: .3rem;
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: 50% 50%;
-	transition: .3s;
+    border-radius: 30%;
+    margin-right: .3rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+    transition: .3s;
 }
 input[type="checkbox"]:checked+label::before {
   border-color: #ccc;
@@ -155,11 +205,11 @@ input[type="checkbox"]:checked+label::before {
 }
 /* стили при наведении курсора на checkbox */
 input[type="checkbox"]:not(:disabled):not(:checked)+label:hover::before {
-	background-color: #aaa;
+    background-color: #aaa;
 }
 /* стили при наведении курсора на checkbox */
 input[type="checkbox"]:not(:disabled):checked+label:hover::before {
-	background-color: #555;
+    background-color: #555;
 }
 /* стили для активного состояния чекбокса (при нажатии на него) */
 input[type="checkbox"]:not(:disabled):active+label::before {
@@ -175,7 +225,7 @@ input[type="checkbox"]:focus+label::before {
 /* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
 input[type="checkbox"]:focus:not(:checked)+label::before {
 /*	background-color: #aaa;*/
-	border: 3px solid #888;
+    border: 3px solid #888;
 
 }
 /* стили для чекбокса, находящегося в состоянии disabled */
