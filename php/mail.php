@@ -8,7 +8,7 @@ $theme = $_POST['theme'];
 $message = $_POST['message'];
 
 // echo($name." ".$theme."\n");
-// echo("Hello world!");
+echo("Hello world!");
 
 $name = htmlspecialchars($name);
 $message = htmlspecialchars($message);
@@ -18,9 +18,10 @@ $message = urldecode($message);
 
 $name = trim($name);
 $message = trim($message);
-if (mail("maskit-zzz@list.ru", $theme, "ФИО: ".$name.".\n Message: ".$message ,"\nFrom: example2@mail.ru \r\n")) {
-     echo "сообщение успешно отправлено";
+
+if (!mail("maskit-zzz@list.ru", "Theme", "ФИО: ".$name."Message: ".$message)) {
+     echo "\nсообщение успешно отправлено";
 } else {
-    echo "при отправке сообщения возникли ошибки";
+    echo "\nпри отправке сообщения возникли ошибки";
 }
 ?>
