@@ -37,7 +37,7 @@
             </div>
         </nav>
 
-<!--	Всплэвающее окно с пояснениями	-->
+<!--	Всплывающее окно с пояснениями	-->
         <div id = "window-about" class="window-pop_up close-pop_up">
             <div class="window-shadow" onclick = 'togglePop_up("window-about")'></div>
 
@@ -51,13 +51,15 @@
             </div>
         </div>
 
+<!--	Всплывающее окно с отправкой формы	-->
         <div id = "mail-message" class="window-pop_up close-pop_up">
             <div class="window-shadow" onclick = 'togglePop_up("mail-message")'></div>
 
             <div class="window-content">
             <p>Отправьте мне сообщение на почту</p>
-            <form action="mail.php" method="POST">
-                <input id="message-name" type="text" placeholder="Имя отправителя" name = "name">
+            <form action="\php\mail.php" method="POST">
+                <input id="message-name" type="text" placeholder="Имя отправителя" name = "name" required>
+                <input id="message-mail" type="text" placeholder="Ваш email" name = "mail" required>
                 <input id="message-theme" type="text" placeholder="Тема" name = "theme">
                 <textarea id="message-message" placeholder="Ваше сообщение" name = "message"></textarea>
                 <input type="submit" class="btn">
