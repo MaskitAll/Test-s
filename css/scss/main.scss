@@ -150,7 +150,15 @@ p{
             }
         }
     }
+
+    @media screen and (max-width: 750px){
+        .window-content{
+            width: 80%;
+            height: 80%;
+        }
+    }
 }
+
 
 form{
     display: flex;
