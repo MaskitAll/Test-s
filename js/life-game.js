@@ -206,7 +206,6 @@ function map(width = 10, height = 10){
 	this.width = width;
 	this.height = height;
 	this.cellMap;
-
 };
 
 map.prototype = {
@@ -250,12 +249,7 @@ map.prototype = {
 		}
 	},
 
-
-
-
-
-
-
+	
 	lifeCondition: function(i, j){
 		var conditions = 0;
 		if(i > 0 && j > 0 				&& this.cellMap[i - 1][j - 1].life) {++conditions;}
@@ -273,12 +267,6 @@ map.prototype = {
 										   && this.cellMap[i + 1][j + 1].life)	{++conditions;}
 		return conditions;
 	},
-
-
-
-
-
-
 
 
 	bn_sn: function(secCellMap, conditions, i, j){

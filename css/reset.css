@@ -85,13 +85,29 @@ width: 11px;
 /*Стилизация button*/
 button{
     cursor: pointer;
+
+    font-family: serif;
+    font-size: 1rem;
+    font-weight: 500;
+
+    padding: .5rem;
+    border-radius: .5rem;
+
+    background-color: #ccc;
+    text-align: center;
 }
 
-/*Стилизация submit*/
-button{
-    cursor: pointer;
-    width: auto;
+button:checked,
+button:focus{
+    outline: none;
+    border: 1px solid black;
+    background-color: #ddd;
 }
+
+button:hover{
+    background-color: #ddd;
+}
+
 
 /*Стилизация input*/
 input[type="text"]{

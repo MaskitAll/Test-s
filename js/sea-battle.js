@@ -83,7 +83,6 @@ class sb_cell{
 		sb_ctx.fillStyle = color;
 		sb_ctx.fillRect(indent + this.x * (seaBattleCanvas.offsetWidth / w), 5 + this.y *  (seaBattleCanvas.offsetWidth / w), (seaBattleCanvas.offsetWidth / w) - 1,  (seaBattleCanvas.offsetWidth / w) - 1);
 	}
-
 };
 
 
