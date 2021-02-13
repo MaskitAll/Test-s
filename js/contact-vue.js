@@ -5,10 +5,7 @@ var Vue = new Vue({
 	data: {
         idGenerator: 0,
 
-        contactLocal: [
-            
-        ],
-        // contactVisible: false,
+        contactLocal: [],
 
         contactList: [
             {
@@ -44,41 +41,35 @@ var Vue = new Vue({
     },
 
     methods: {
+        addContact: function(){
+            var newName = document.contactAddForm.name.value;
+            var newNum = document.contactAddForm.num.value;
+
+            this.contactList.push({id: this.idGenerator++, contactVisible: false, data: {name: newName, num: newNum}});
+            console.log("Добавлено");
+        },
+
         deleteContact: function(contact){
             if(confirm("Удалить контакт?")){
                 this.contactList.splice(this.contactList.findIndex(findContact => findContact === contact), 1); 
-                console.log("deleted");  
+                console.log("Удалено");  
             } 
         },
 
-        addContact: function(){
-            var name = document.contactAddForm.name.value;
-            var num = document.contactAddForm.num.value;
-
-            this.contactList.push({id: this.idGenerator++, name: name, num: num});
-            console.log("added");
-        },
-
-        showInfo: function(contact){
+        showInfo: function(contact = this.contactLocal){
             contact.contactVisible = true;
             this.contactLocal = contact;
-            // console.log(contact.contactVisible);
-            // contact.contactVisible = false;
-
-            // this.contactLocal = contact;
-            // var info = document.querySelector("#infoBlock");
-            // info.classList.toggle("visible");
+            console.log("Показано");
         },
 
         hideInfo: function(){
             this.contactLocal.contactVisible = false;
-            this.contactList[this.contactList.findIndex(findContact => findContact === this.contactLocal)] = this.contactLocal;
-            
+            this.contactList[this.contactList.findIndex(findContact => findContact === this.contactLocal)] = this.contactLocal; 
+            console.log("Спрятано");
         },
 
         toggleInfo: function(dataName){
             const data = prompt("Заменить значение поля " + dataName + ": ");
-            // console.log(contact);
             if(data){
                 this.contactLocal.data[dataName] = data;
                 console.log("Изменено");}
@@ -93,15 +84,22 @@ var Vue = new Vue({
             var dataName = newData.slice(0, newData.indexOf(":"));
             var dataValue = newData.slice(newData.indexOf(":") + 1);
 
-            // if(data){
-                this.contactLocal.data[dataName] =  dataValue;
-                console.log("Добавено.");
-            // }
-            // else { 
-            //     console.log("Осталось как было.");
-            // }
+            this.contactLocal.data[dataName] =  dataValue;
+            
+            this.hideInfo();
+            this.showInfo();
+            console.log("Добавено");
         },
 
+        deleteInfo: function(dataName){
+            if(confirm("Удалить данные?")){
+                delete this.contactLocal.data[dataName];
+                this.hideInfo();
+                this.showInfo();
+                console.log("Удалено");
+
+            }
+        },
 
     }
 
