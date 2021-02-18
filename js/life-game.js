@@ -22,17 +22,14 @@ var lifeSpeed = 500;
 
 var w = Math.floor(example.width / (size_range.value * 3));
 var h = Math.floor(example.height / (size_range.value * 3));
-	console.log('w = ' + w + " h = " + h);
+	// console.log('w = ' + w + " h = " + h);
 
 
-function windowToCanvas(x, y) {
-	var bbox = example.getBoundingClientRect();
 
-	return {
-		x: x - bbox.left * (example.offsetWidth / bbox.width),
-		y: y - bbox.top * (example.offsetHeight / bbox.height)
-	};
-}
+
+
+
+	
 
 function getCheckedCheckBoxes(ch_container) {
 	var checkboxes = document.querySelectorAll(ch_container);
@@ -60,6 +57,36 @@ function born_i(checkboxesChecked, conditions, i){
 	return false;
 }
 
+function changeSpeed(){
+	lifeSpeed = (20 - speed.value) * 100;
+	start.click();
+};
+
+function changeSize(){
+	example.width = example.offsetWidth;
+	example.height = example.offsetHeight;
+
+	w = Math.floor(example.width / (size_range.value * 5));
+	h = Math.floor(example.height / (size_range.value * 5));
+
+	var m1 = new map(w, h);
+	m1.createMap();
+	m1.fillMapArr(m);
+
+	m = m1;
+
+	m.drawMap();
+	pause.click();
+};
+
+function nextDay(m1){
+	m1.dayToggle();
+//	m1.showMap();
+	m1.drawMap();
+}
+
+
+
 
 /*Управление кнопками*/
 window.addEventListener(`resize`, event => {
@@ -72,10 +99,7 @@ window.addEventListener(`resize`, event => {
 		m.drawMap();
 }, false);
 
-
-
 example.addEventListener('mousedown', function (e) {
-//	example.addEventListener('mousemove', function (e) {
 
 	var loc = windowToCanvas(e.clientX, e.clientY);
 	var x = loc.x;
@@ -85,7 +109,6 @@ example.addEventListener('mousedown', function (e) {
 	y = Math.floor(y / (example.offsetHeight / h));
 
 	toggleCell(x, y);
-//	});
 });
 
 start.addEventListener('click', function(){
@@ -113,56 +136,6 @@ reset.addEventListener('click', function(){
 	m.fillMap(false);
 	m.drawMap();
 });
-
-
-function changeSpeed(){
-	lifeSpeed = (20 - speed.value) * 100;
-	start.click();
-};
-
-function changeSize(){
-	example.width = example.offsetWidth;
-	example.height = example.offsetHeight;
-
-	w = Math.floor(example.width / (size_range.value * 5));
-	h = Math.floor(example.height / (size_range.value * 5));
-
-	var m1 = new map(w, h);
-	m1.createMap();
-	m1.fillMapArr(m);
-
-	m = m1;
-
-	m.drawMap();
-	pause.click();
-
-};
-
-
-
-/* Всякие функции поддержки*/
-function random(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-
-function createArr(width, height){
-	var map = new Array(width);
-	for (var i = 0; i < map.length; ++i) {
-		map[i] = new Array(height);
-	}
-	return map;
-}
-
-
-function nextDay(m1){
-	m1.dayToggle();
-//	m1.showMap();
-	m1.drawMap();
-}
-
 
 
 
@@ -205,6 +178,7 @@ cell.prototype = {
 function map(width = 10, height = 10){
 	this.width = width;
 	this.height = height;
+
 	this.cellMap;
 };
 
@@ -226,7 +200,6 @@ map.prototype = {
 			for (var j = 0; j < this.cellMap[i].length; ++j){
 				if(rand){
 					this.cellMap[i][j].Cell(i, j, !!random(0, 1));
-//					this.cellMap[i][j] = random(0, 1);
 				}
 				else {
 					this.cellMap[i][j].Cell(i, j, false);
@@ -332,8 +305,7 @@ map.prototype = {
 			}
 		}
 	},
-
-
+	
 }
 
 var m = new map(w, h);

@@ -11,6 +11,11 @@ class Cell{
     setValue(newValue){
         this.value = newValue;
     }
+
+    toggleValue(){
+		if(this.value === 0) this.value = 1;
+		else this.value = 0;
+	}
 };
 
 /* Map */
@@ -21,8 +26,16 @@ class Map{
         this.indent = indent;
         
         this.cellMap = createArr(this.width, this.height);
-        this.colorArray = ["#fff", "#f00", "#0f0", "#00f", "#ccc", "#000"];
+        this.colorArray = ["#fff", "#f00", "#0f0", "#00f", "#ddd", "#000"];
         // this.colorArray = {0: "#fff", 1: "#f00", 2: "#0f0", 3: "#00f", 4: "#ccc", 5: "#000"};
+    }
+
+    // меняет местами значения ячеек
+    swipeCell(cell_1, cell_2){
+        var cell = new Cell();
+        cell.value = cell_2.value;
+        cell_2.value = cell_1.value;
+        cell_1.value = cell.value;
     }
 
     // заполняет карту пустыми ячейками
@@ -33,13 +46,29 @@ class Map{
             }
         }
     }
-    // меняет местами значения ячеек
-    swipeCell(cell_1, cell_2){
-        var cell = new Cell();
-        cell.value = cell_2.value;
-        cell_2.value = cell_1.value;
-        cell_1.value = cell.value;
-    }
+
+    // заполняет карту ячейками из другой карты
+    fillMapArr(m1){
+		for (var i = 0; i < this.cellMap.length; ++i){
+			for (var j = 0; j < this.cellMap[i].length; ++j){
+
+				if (i < m1.cellMap.length && j < m1.cellMap[i].length){
+					this.cellMap[i][j] = m1.cellMap[i][j];
+				} else{
+					this.cellMap[i][j] = new Cell(i, j, 0);
+				}
+			}
+		}
+	}
+
+    // заполняет карту случайными ячейками
+    fillMapRand(){
+		for (var i = 0; i < this.cellMap.length; ++i){
+			for (var j = 0; j < this.cellMap[i].length; ++j){
+				this.cellMap[i][j] = new Cell(i, j, random(0, this.colorArray.length));
+			}
+		}
+	} 
 }
 
 
@@ -59,4 +88,15 @@ function createArr(width, height){
 		arr[i] = new Array(height);
 	}
 	return arr;
+}
+
+// переводит позицию мыши на экране в позицию на канвасе
+function windowToCanvas(x, y, indent = 5) {
+    var bbox = canvas.getBoundingClientRect();
+    
+    return {
+        // позиция мыши - (позиция канваса(0.0) + отступ)
+        x: x - (bbox.left + indent),
+        y: y - (bbox.top + indent)
+    };
 }
