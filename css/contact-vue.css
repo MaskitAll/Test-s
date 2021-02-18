@@ -8,8 +8,7 @@
 }
 
 body{
-    min-width: 500px;
-
+    min-width: 540px;
 }
 
 a{
@@ -19,6 +18,13 @@ a{
 
 }
 
+#contacts{
+    /* position: absolute; */
+    width: 100%;
+    min-width: 540px;
+}
+
+
 .background{
     position: absolute;
 
@@ -26,19 +32,18 @@ a{
     flex-direction: column;
     flex-wrap: nowrap;
 
+    width: 500px;
+    max-height: 538px;
     left: 50%;
     transform: translateX(-50%);
 
-    margin: 50px 0;
+    margin: 50px auto;
     padding-top: 140px;
 }
 
 .contacts-container{
     position: relative;
-    width: 500px;
-    max-height: 538px;
     overflow-y: auto;
-    /* padding-right: 20px; */
 }
 
 .contact-item{
@@ -51,12 +56,10 @@ a{
     background-color: #a0a0a0;
     border: #707070;
     border-radius: 5px;
-
 }
 
 .contact-item-add{
     position: fixed;
-    
     top: 0;
     left: 0;
 }
@@ -107,7 +110,6 @@ a{
     position: relative;
     z-index: 10;
 
-
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -119,9 +121,10 @@ a{
     left: 50%;
     transform: translateX(-50%);
 
-    margin: 50px 0;
+    margin: 50px 0 0;
     padding: 10px;
     border-radius: 10px;
+    box-sizing: border-box;
 
     background-color: #fff;
 
@@ -130,4 +133,13 @@ a{
 /* .contact-info{
     position: relative;
     height: 30px;
+} */
+
+/* @media screen and (max-width: 540px){
+    #contacts{
+        /* position: relative; */
+    }
+    .container-info{
+
+    }
 } */

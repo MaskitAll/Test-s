@@ -576,9 +576,8 @@ body li {
 #canvas .canvas-container canvas,
 #sea-battle .canvas-container canvas {
   cursor: pointer;
-  width: calc(100% - 2rem);
-  height: 100%;
-  min-height: 20rem;
+  width: 300px;
+  height: 300px;
 }
 #canvas .v-range,
 #sea-battle .v-range {
