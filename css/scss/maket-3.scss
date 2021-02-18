@@ -512,11 +512,14 @@ body{
 
         canvas{
             cursor: pointer;
-            // width: calc(100% - 2rem);
-            // height: 100%;
+            width: calc(100% - 2rem);
+            height: 100%;
+            min-height: 20rem;
+        }
+
+        #sea-battle-canvas{
             width: 300px;
             height: 300px;
-            // min-height: 20rem;
         }
     }
 
