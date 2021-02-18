@@ -217,12 +217,6 @@ body {
 body li {
   list-style: none;
 }
-@media screen and (max-width: 750px) {
-  body {
-    zoom: 60%;
-  }
-}
-
 #maket {
   display: block;
   margin: 30px 20%;
