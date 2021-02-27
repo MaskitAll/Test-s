@@ -504,23 +504,10 @@ body{
 #sea-battle{
     height: auto;
 
-.canvas-container{
-    display: flex;
-    flex-direction: row;
-    align-content: space-between;
-    box-sizing: border-box;
-
-        canvas{
-            cursor: pointer;
-            width: calc(100% - 2rem);
-            height: 100%;
-            min-height: 20rem;
-        }
-
-        #sea-battle-canvas{
-            width: 300px;
-            height: 300px;
-        }
+    #example{
+        width: calc(100% - 2rem);
+        // height: 100%;
+        min-height: 30rem;
     }
 
     .v-range{
@@ -549,6 +536,29 @@ body{
         }
     }
 }
+
+.canvas-container{
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    box-sizing: border-box;
+}
+
+canvas{
+    cursor: pointer;
+    margin: .5rem;
+}
+
+#sea-battle_canvas,
+#sea-battle-enemy_canvas{
+    width: 20rem;
+    height: 20rem;
+}
+#sea-battle-ship_canvas{
+    width: 40rem;
+    height: 12rem;
+}
+
 
 
 /**********************

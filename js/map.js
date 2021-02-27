@@ -13,8 +13,7 @@ class Cell{
     }
 
     toggleValue(){
-		if(this.value === 0) this.value = 1;
-		else this.value = 0;
+		this.value === 0 ? this.value = 1 : this.value = 0;
 	}
 };
 
@@ -26,6 +25,12 @@ class Map{
         this.indent = indent;
         
         this.cellMap = createArr(this.width, this.height);
+        for(var i = 0; i < this.width; ++i){
+            for(var j = 0; j < this.height; ++j){
+                this.cellMap[i][j] = new Cell(i, j, 0);
+            }
+        }
+
         this.colorArray = ["#fff", "#f00", "#0f0", "#00f", "#ddd", "#000"];
         // this.colorArray = {0: "#fff", 1: "#f00", 2: "#0f0", 3: "#00f", 4: "#ccc", 5: "#000"};
     }
@@ -42,7 +47,7 @@ class Map{
     fillMap(){
         for(var i = 0; i < this.width; ++i){
             for(var j = 0; j < this.height; ++j){
-                this.cellMap[i][j] = new Cell(i, j, 0);
+                this.cellMap[i][j].value = 0;
             }
         }
     }
@@ -55,7 +60,7 @@ class Map{
 				if (i < m1.cellMap.length && j < m1.cellMap[i].length){
 					this.cellMap[i][j] = m1.cellMap[i][j];
 				} else{
-					this.cellMap[i][j] = new Cell(i, j, 0);
+					this.cellMap[i][j].value = 0;
 				}
 			}
 		}
@@ -78,7 +83,7 @@ class Map{
 function random(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min)) + min;
 }
 
 // Create array
@@ -91,7 +96,7 @@ function createArr(width, height){
 }
 
 // переводит позицию мыши на экране в позицию на канвасе
-function windowToCanvas(x, y, indent = 5) {
+function windowToCanvas(canvas, x, y, indent = 5) {
     var bbox = canvas.getBoundingClientRect();
     
     return {
@@ -100,3 +105,38 @@ function windowToCanvas(x, y, indent = 5) {
         y: y - (bbox.top + indent)
     };
 }
+
+// отрисовывает обводку ячейки
+function drawBorder(canvas, ctx, m, color, x, y){
+    ctx.fillStyle = color;
+
+    ctx.fillRect(   m.indent + x * ((canvas.width - m.indent * 2) / m.width) - 2,
+                    m.indent + y * ((canvas.height - m.indent * 2) / m.height) - 2,
+                    (canvas.width - m.indent * 2)/ m.width + 2,
+                    (canvas.height - m.indent * 2) / m.height + 2
+    );
+};
+
+// отрисовывает ячейку
+function drawCell(canvas, ctx, m, x, y){
+    ctx.fillStyle = m.colorArray[m.cellMap[x][y].value];
+
+    ctx.fillRect(   m.indent + x * ((canvas.width - m.indent * 2) / m.width),
+                    m.indent + y * ((canvas.height - m.indent * 2) / m.height),
+                    (canvas.width - m.indent * 2)/ m.width - 2,
+                    (canvas.height - m.indent * 2) / m.height - 2
+    );
+};
+
+// отрисовывает карту
+function drawMap(canvas, ctx, m){
+    ctx.fillStyle = "#ccc";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // console.log(m.cellMap); 
+    for (var i = 0; i < m.cellMap.length; ++i){
+        for (var j = 0; j < m.cellMap[i].length; ++j){
+            drawCell(canvas, ctx, m, i, j);
+        }
+    }
+};

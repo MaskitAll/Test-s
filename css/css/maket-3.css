@@ -560,24 +560,10 @@ body li {
 #sea-battle {
   height: auto;
 }
-#canvas .canvas-container,
-#sea-battle .canvas-container {
-  display: flex;
-  flex-direction: row;
-  align-content: space-between;
-  box-sizing: border-box;
-}
-#canvas .canvas-container canvas,
-#sea-battle .canvas-container canvas {
-  cursor: pointer;
+#canvas #example,
+#sea-battle #example {
   width: calc(100% - 2rem);
-  height: 100%;
-  min-height: 20rem;
-}
-#canvas .canvas-container #sea-battle-canvas,
-#sea-battle .canvas-container #sea-battle-canvas {
-  width: 300px;
-  height: 300px;
+  min-height: 30rem;
 }
 #canvas .v-range,
 #sea-battle .v-range {
@@ -604,6 +590,29 @@ body li {
 #canvas .h-range input[type=range],
 #sea-battle .h-range input[type=range] {
   width: 80%;
+}
+
+.canvas-container {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  box-sizing: border-box;
+}
+
+canvas {
+  cursor: pointer;
+  margin: 0.5rem;
+}
+
+#sea-battle_canvas,
+#sea-battle-enemy_canvas {
+  width: 20rem;
+  height: 20rem;
+}
+
+#sea-battle-ship_canvas {
+  width: 40rem;
+  height: 12rem;
 }
 
 /**********************

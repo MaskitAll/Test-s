@@ -1,12 +1,12 @@
 'use strict';
-const   canvas  = document.getElementById("example"),
-        ctx     = canvas.getContext('2d'); 
+const   canvas_LG  = document.getElementById("example"),
+        ctx_LG     = canvas_LG.getContext('2d'); 
            
-        canvas.width = Math.floor(canvas.offsetWidth);
-        canvas.height =  Math.floor(canvas.offsetHeight);
+        canvas_LG.width = Math.floor(canvas_LG.offsetWidth);
+        canvas_LG.height =  Math.floor(canvas_LG.offsetHeight);
         
-        ctx.fillStyle = "#ccc";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx_LG.fillStyle = "#ccc";
+        ctx_LG.fillRect(0, 0, canvas_LG.width, canvas_LG.height);
 
 
 var start = document.querySelector("#lifeStart"),
@@ -86,53 +86,19 @@ class LifeGame extends Map{
 	}
 }
 
-// отрисовывает обводку ячейки
-function drawBorder(m, color, x, y){
-    ctx.fillStyle = color;
-
-    ctx.fillRect(   m.indent + x * ((canvas.width - m.indent * 2) / m.width) - 2,
-                    m.indent + y * ((canvas.height - m.indent * 2) / m.height) - 2,
-                    (canvas.width - m.indent * 2)/ m.width + 2,
-                    (canvas.height - m.indent * 2) / m.height + 2
-    );
-};
-
-// отрисовывает ячейку
-function drawCell(m, x, y){
-    ctx.fillStyle = m.colorArray[m.cellMap[x][y].value];
-
-    ctx.fillRect(   m.indent + x * ((canvas.width - m.indent * 2) / m.width),
-                    m.indent + y * ((canvas.height - m.indent * 2) / m.height),
-                    (canvas.width - m.indent * 2)/ m.width - 2,
-                    (canvas.height - m.indent * 2) / m.height - 2
-    );
-};
-
-// отрисовывает карту
-function drawMap(m){
-    ctx.fillStyle = "#ccc";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    for (var i = 0; i < m.cellMap.length; ++i){
-        for (var j = 0; j < m.cellMap[i].length; ++j){
-            drawCell(m, i, j);
-        }
-    }
-};
-
 // меняет скорость жизни
 function changeSpeed(){
-	lifeSpeed = (20 - speed.value) * 100;
+	lifeSpeed = (20 - speed.value) * 50;
 	start.click();
 };
 
 // меняет размеры карты при изменении положения ползунка
 function changeSize(){
-    canvas.width = Math.floor(canvas.offsetWidth);
-    canvas.height =  Math.floor(canvas.offsetHeight);
+    canvas_LG.width = Math.floor(canvas_LG.offsetWidth);
+    canvas_LG.height =  Math.floor(canvas_LG.offsetHeight);
 
-	w = Math.floor(canvas.width / (size_range.value * 5));
-	h = Math.floor(canvas.height / (size_range.value * 5));
+	w = Math.floor(canvas_LG.width / (size_range.value * 5));
+	h = Math.floor(canvas_LG.height / (size_range.value * 5));
 
 	var m1 = new  LifeGame(w, h, m.indent);
 	m1.fillMap();
@@ -140,7 +106,7 @@ function changeSize(){
 
 	m = m1;
 
-	drawMap(m);
+	drawMap(canvas_LG, ctx_LG, m);
 	pause.click();
 };
 
@@ -157,7 +123,7 @@ function born_i(checkboxesChecked, conditions, i){
 // смена дня и отрисовка
 function nextDay(){
 	m.dayToggle();
-	drawMap(m);
+	drawMap(canvas_LG, ctx_LG, m);
 }
 
 // возвращает массив активных чекбоксов
@@ -185,45 +151,45 @@ pause.addEventListener('click', function(){
 
 next.addEventListener('click', function(){
 	m.dayToggle();
-	drawMap(m);
+	drawMap(canvas_LG, ctx_LG, m);
 });
 
 rand.addEventListener('click', function(){
 	clearInterval(lifeTimer);
 	m.fillMapRand();
-	drawMap(m);
+	drawMap(canvas_LG, ctx_LG, m);
 });
 
 reset.addEventListener('click', function(){
 	clearInterval(lifeTimer);
 	m.fillMap();
-	drawMap(m);
+	drawMap(canvas_LG, ctx_LG, m);
 });
 
 // подстраивает размер карты под размер страницы
 window.addEventListener(`resize`, event => {
-    canvas.width = Math.floor(canvas.offsetWidth);
-    canvas.height =  Math.floor(canvas.offsetHeight);
+    canvas_LG.width = Math.floor(canvas_LG.offsetWidth);
+    canvas_LG.height =  Math.floor(canvas_LG.offsetHeight);
 
-    ctx.fillStyle = "#ccc";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx_LG.fillStyle = "#ccc";
+    ctx_LG.fillRect(0, 0, canvas_LG.width, canvas_LG.height);
 
-    drawMap(m);
+    drawMap(canvas_LG, ctx_LG, m);
 }, false);
 
 // меняет ячейку при нажатии
-canvas.addEventListener('mousedown', function (e) {
-    var loc = windowToCanvas(e.clientX, e.clientY, m.indent);
+canvas_LG.addEventListener('mousedown', function (e) {
+    var loc = windowToCanvas(canvas_LG, e.clientX, e.clientY, m.indent);
     var x = loc.x;
     var y = loc.y;
     
-    x = Math.floor(x / (canvas.width - m.indent * 2) * m.width);
-    y = Math.floor(y / (canvas.height - m.indent * 2) * m.height);
+    x = Math.floor(x / (canvas_LG.width - m.indent * 2) * m.width);
+    y = Math.floor(y / (canvas_LG.height - m.indent * 2) * m.height);
 
     // изменить в зависимости от логики
     m.cellMap[x][y].toggleValue();
 
-    drawMap(m);
+    drawMap(canvas_LG, ctx_LG, m);
 });
 
 // количество клеток определяется масштабом (10px)
@@ -235,5 +201,5 @@ var w = Math.floor(example.width / (size_range.value * 5));
 var h = Math.floor(example.height / (size_range.value * 5));
 
 var m = new LifeGame(w, h, 5);
-    m.fillMap();
-    drawMap(m);
+    // m.fillMap();
+    drawMap(canvas_LG, ctx_LG, m);
