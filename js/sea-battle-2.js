@@ -55,6 +55,36 @@ class Ships{
         }
 	}
 
+    rotateShip(){
+        if(this.rotate === "h"){
+            this.rotate = "v";
+            this.width = 1;
+            this.height = this.length;
+
+            this.ship = createArr(this.width,  this.height);
+        }
+        else if(this.rotate === "v"){
+            this.rotate = "h";
+            this.width = this.length;
+            this.height = 1;
+
+            this.ship = createArr(this.width,  this.height);
+        }
+
+        for(var i = 0; i < this.width; ++i){
+            for(var j = 0; j < this.height; ++j){
+                this.ship[i][j] = new Cell(this.x + i, this.y + j, 1);
+            }
+        }
+    }
+
+    
+    // Поставить корабль в нужные координаты
+    putShip(x, y){
+        this.x = x;
+        this.y = y;
+    }
+
 }
 
 /*****************
@@ -81,14 +111,14 @@ class MapShip extends Map{
                         for(var k = -1; k <= ship.width; ++k){      // ширина (Ox)
                             for(var l = -1; l <= ship.height; ++l){ // высота (Oy)
                                 if(l === j && k === i) { return; }
-                                this.cellMap[ship.x + k][ship.y + l].value = 2;
+                                this.cellMap[ship.x + k][ship.y + l].value = 0;
                             }   
                         }
                     }
 
                     // заполняются пустые места вокруг корабля
                     if(i === -1 || j === -1 || i === ship.width || j === ship.height){
-                        this.cellMap[ship.x + i][ship.y + j].value = 2;
+                        this.cellMap[ship.x + i][ship.y + j].value = 0;
                     }
                     // заполняется сам корабль
                     else {
@@ -108,7 +138,7 @@ class MapShip extends Map{
                                 }
 
                                 if(l === j && k === i) { return; }
-                                this.cellMap[ship.x + k][ship.y + l].value = 2;
+                                this.cellMap[ship.x + k][ship.y + l].value = 0;
                             } 
                         }  
                     }
@@ -175,7 +205,8 @@ class MapShip extends Map{
 	}
 
     isShip(x, y){
-        if(this.cellMap[x][y].value != 1){ console.log("0"); return false; }
+        if(this.cellMap[x][y].value != 1){ return false; }
+
         var rotate = this.findRotate(x, y)
 
         if(rotate === "e"){ return new Ships(x, y, "v", 1);}
@@ -186,19 +217,25 @@ class MapShip extends Map{
         var len = this.findLen(startX, startY, rotate);
 
         return new Ships(startX, startY, rotate, len);
-
     }
 
-    startGame(){
-        this.fillMap();
-        console.log("start");
+    deleteShip(ship){
+        if(ship){
+            for(var i = ship.x; i < ship.x + ship.width; ++i){
+                for(var j = ship.y; j < ship.y + ship.height; ++j){
+                    this.cellMap[i][j].value = 0;
+                }   
+            }
+        }
+    }
 
-        shipArray.forEach(ship => {
-            this.setShip(ship);
-        });
+    swipeShip(ship, x, y){
+        this.deleteShip(this.isShip(x, y));
+        // this.deleteShip(ship);
+        
+        ship.putShip(x, y);
 
-
-
+        this.setShip(ship);
     }
 }
 
@@ -221,6 +258,30 @@ drawMap(canvasShips_BS, ctxShips_BS, mapShips);
     Ship Map
 ******************/
 
+// Загрузка начальной карты
+function startGame(){
+    mapShips.fillMap();
+    console.log("start");
+
+    shipArray.forEach(ship => {
+        mapShips.setShip(ship);
+    });
+}
+
+// Выбор корабля
+function checkShip(x, y){
+    subShip = mapShips.isShip(x, y);
+
+    if(subShip === false){return;}
+
+    shipArray.forEach(ship => {
+        if (ship.x === subShip.x && ship.y === subShip.y) {
+            console.log(ship);
+        }
+    });
+}
+
+
 // выбирает корабль
 canvasShips_BS.addEventListener('mousedown', function (e) {
     var loc = windowToCanvas(canvasShips_BS, e.clientX, e.clientY, mapShips.indent);
@@ -231,34 +292,59 @@ canvasShips_BS.addEventListener('mousedown', function (e) {
     y = Math.floor(y / (canvasShips_BS.height - mapShips.indent * 2) * mapShips.height);
 
     // изменить в зависимости от логики
-   console.log(x + " - " + y);
-   console.log(mapShips.isShip(x, y));
+    currentShip = mapShips.isShip(x, y);
 
-    // drawMap(canvasShips_BS, ctxShips_BS, mapShips);
+    if(currentShip === false){return;}
+    
+    for(var i = 0; i < shipArray.length; ++i){
+        if (shipArray[i].x === currentShip.x && shipArray[i].y === currentShip.y) {
+            mapShips.swipeShip(currentShip, 16, 1);
+        }
+    }
+
+    drawMap(canvasShips_BS, ctxShips_BS, mapShips);
 });
 
+
+document.addEventListener('keyup', function(event){
+    
+    // console.log('Key: ', event.key);
+    // console.log('keyCode: ', event.keyCode);
+
+    if(event.keyCode === 32){
+        if(currentShip != false){
+            currentShip.rotateShip();
+            mapShips.swipeShip(currentShip, 16, 1);
+        }
+    }
+
+    drawMap(canvasShips_BS, ctxShips_BS, mapShips);
+
+});
 
 
 // var s = new Ships(3, 5, 1, 1, 5);
 // console.log(s);
            
 const shipArray = [ 
-                    new Ships(0, 0, "v", 4),
+                    new Ships(1, 1, "v", 4),
 
                     new Ships(3, 1, "v", 3),  
                     new Ships(5, 1, "v", 3),
 
-                    new Ships(7, 1, "v", 2),
-                    new Ships(9, 1, "v", 2),
-                    new Ships(11, 1, "v", 2),
+                    new Ships(7, 1, "h", 2),
+                    new Ships(7, 3, "h", 2),
+                    new Ships(7, 5, "h", 2),
                     
-                    new Ships(13, 1, "v", 1),
-                    new Ships(16, 1, "v", 1),
-                    new Ships(13, 5, "v", 1),
-                    new Ships(19, 5, "v", 1),
+                    new Ships(10, 1, "v", 1),
+                    new Ships(12, 1, "v", 1),
+                    new Ships(10, 3, "v", 1),
+                    new Ships(12, 3, "v", 1),
 ]
 
+var currentShip = new Ships();
 
-mapShips.startGame();
+
+startGame();
 drawMap(canvasShips_BS, ctxShips_BS, mapShips);
 
