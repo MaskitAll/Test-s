@@ -104,7 +104,7 @@ class MapShip extends Map{
 
                 // проверка на выход за границы полей карты
                 if( ship.x + i >= 0 && ship.x + i < this.cellMap.length && 
-                    ship.y + j >= 0 && ship.y + j < this.cellMap[ship.x].length ) {
+                    ship.y + j >= 0 && ship.y + j < this.cellMap[ship.x].length) {
 
                     // если корабль залезает в зону другого
                     if(this.cellMap[ship.x + i][ship.y + j].value === 1){
@@ -220,11 +220,10 @@ class MapShip extends Map{
     }
 
     deleteShip(ship){
-        if(ship){
-            for(var i = ship.x; i < ship.x + ship.width; ++i){
-                for(var j = ship.y; j < ship.y + ship.height; ++j){
-                    this.cellMap[i][j].value = 0;
-                }   
+        for(var i = ship.x; i < ship.x + ship.width; ++i){
+            for(var j = ship.y; j < ship.y + ship.height; ++j){
+                this.cellMap[i][j].value = 0;
+                // console.log(this.cellMap[i][j])
             }
         }
     }
@@ -236,11 +235,12 @@ class MapShip extends Map{
         ship.putShip(x, y);
 
         this.setShip(ship);
+        
     }
 }
 
 
-const mapPlayer = new Map(10, 10, 10);
+const mapPlayer = new MapShip(10, 10, 10);
 const mapEnemy = new Map(10, 10, 10);
 const mapShips = new MapShip(20, 6, 10);
 
@@ -276,9 +276,9 @@ function checkShip(x, y){
 
     shipArray.forEach(ship => {
         if (ship.x === subShip.x && ship.y === subShip.y) {
-            console.log(ship);
+            // console.log(ship);
         }
-    });
+    }); 
 }
 
 
@@ -298,7 +298,7 @@ canvasShips_BS.addEventListener('mousedown', function (e) {
     
     for(var i = 0; i < shipArray.length; ++i){
         if (shipArray[i].x === currentShip.x && shipArray[i].y === currentShip.y) {
-            mapShips.swipeShip(currentShip, 16, 1);
+            mapShips.swipeShip(currentShip, 15, 1);
         }
     }
 
@@ -306,21 +306,42 @@ canvasShips_BS.addEventListener('mousedown', function (e) {
 });
 
 
-document.addEventListener('keyup', function(event){
-    
-    // console.log('Key: ', event.key);
-    // console.log('keyCode: ', event.keyCode);
 
+// выставление кораблей на свое поле
+canvasPlayer_BS.addEventListener('mousedown', function (e) {
+    var loc = windowToCanvas(canvasPlayer_BS, e.clientX, e.clientY, mapPlayer.indent);
+    var x = loc.x;
+    var y = loc.y;
+    
+    x = Math.floor(x / (canvasPlayer_BS.width - mapPlayer.indent * 2) * mapPlayer.width);
+    y = Math.floor(y / (canvasPlayer_BS.height - mapPlayer.indent * 2) * mapPlayer.height);
+
+    // изменить в зависимости от логики
+    
+    mapShips.deleteShip(currentShip);   // удаляет корабль из окна выбора
+    currentShip.putShip(x, y);          // меняет координаты выбранного корабля под текущие
+    mapPlayer.setShip(currentShip);     // выставляет корабль на поле игрока
+    currentShip = new Ships();          // удаляет корабль выбора
+
+    // console.log(mapPlayer)
+
+    drawMap(canvasPlayer_BS, ctxPlayer_BS, mapPlayer);
+    drawMap(canvasShips_BS, ctxShips_BS, mapShips);
+
+});
+
+// при нажатии на пробел currentShip меняет ротацию 
+document.onkeydown = function(event){
     if(event.keyCode === 32){
+        event.preventDefault();
         if(currentShip != false){
             currentShip.rotateShip();
-            mapShips.swipeShip(currentShip, 16, 1);
+            mapShips.swipeShip(currentShip, 15, 1);
         }
     }
 
     drawMap(canvasShips_BS, ctxShips_BS, mapShips);
-
-});
+};
 
 
 // var s = new Ships(3, 5, 1, 1, 5);
@@ -341,6 +362,9 @@ const shipArray = [
                     new Ships(10, 3, "v", 1),
                     new Ships(12, 3, "v", 1),
 ]
+
+const plyerShips = [];
+
 
 var currentShip = new Ships();
 

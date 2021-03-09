@@ -31,7 +31,6 @@ function windowToCanvas(x, y) {
 	};
 }
 
-
 seaBattleCanvas.addEventListener('mousedown', function (e) {
 	var loc = windowToCanvas(e.clientX, e.clientY);
 	var x = loc.x;

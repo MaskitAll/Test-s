@@ -73,7 +73,17 @@ class Map{
 				this.cellMap[i][j] = new Cell(i, j, random(0, this.colorArray.length));
 			}
 		}
-	} 
+	}
+    // выставляет значение ячейки
+    setCellValue(x, y, value){
+        if( x >= 0 && x < this.cellMap.length && 
+            y >= 0 && y < this.cellMap[x].length) {
+                this.cellMap[x][y].value = value;
+            }
+        else {
+            return false;
+        }
+    }
 }
 
 

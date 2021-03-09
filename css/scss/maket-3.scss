@@ -81,7 +81,7 @@ body{
     font-size: 10px;
     font-weight: 600;
     transition: .2s;
-    min-width: 520px;
+    min-width: 1015px;
 
     li{
         list-style: none;
@@ -540,8 +540,9 @@ body{
 .canvas-container{
     display: flex;
     flex-direction: row;
-    align-content: space-between;
+    justify-content: center;
     box-sizing: border-box;
+
 }
 
 canvas{
@@ -551,12 +552,12 @@ canvas{
 
 #sea-battle_canvas,
 #sea-battle-enemy_canvas{
-    width: 20rem;
-    height: 20rem;
+    width: 16rem;
+    height: 16rem;
 }
 #sea-battle-ship_canvas{
-    width: 40rem;
-    height: 12rem;
+    width: 33rem;
+    height: 11rem;
 }
 
 
