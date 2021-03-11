@@ -34,6 +34,8 @@ class Ships{
 
         this.rotate = rotate;
         this.length = length;
+        
+        this.id = "" + this.x + this.y + this.rotate + this.length;
 
         if(rotate === "v"){
             this.width = 1;
@@ -78,7 +80,6 @@ class Ships{
         }
     }
 
-    
     // Поставить корабль в нужные координаты
     putShip(x, y){
         this.x = x;
@@ -168,7 +169,6 @@ class MapShip extends Map{
 				return "v";
 			}
 		}
-
 		return "e";
 	}
 
@@ -223,7 +223,6 @@ class MapShip extends Map{
         for(var i = ship.x; i < ship.x + ship.width; ++i){
             for(var j = ship.y; j < ship.y + ship.height; ++j){
                 this.cellMap[i][j].value = 0;
-                // console.log(this.cellMap[i][j])
             }
         }
     }
@@ -235,7 +234,6 @@ class MapShip extends Map{
         ship.putShip(x, y);
 
         this.setShip(ship);
-        
     }
 }
 
@@ -243,11 +241,6 @@ class MapShip extends Map{
 const mapPlayer = new MapShip(10, 10, 10);
 const mapEnemy = new Map(10, 10, 10);
 const mapShips = new MapShip(20, 6, 10);
-
-// mapPlayer.fillMap();
-// mapEnemy.fillMap();
-// mapShips.fillMap();
-
 
 drawMap(canvasPlayer_BS, ctxPlayer_BS, mapPlayer);
 drawMap(canvasEnemy_BS, ctxEnemy_BS, mapEnemy);
@@ -269,17 +262,17 @@ function startGame(){
 }
 
 // Выбор корабля
-function checkShip(x, y){
-    subShip = mapShips.isShip(x, y);
+// function checkShip(x, y){
+//     subShip = mapShips.isShip(x, y);
 
-    if(subShip === false){return;}
+//     if(subShip === false){return;}
 
-    shipArray.forEach(ship => {
-        if (ship.x === subShip.x && ship.y === subShip.y) {
-            // console.log(ship);
-        }
-    }); 
-}
+//     shipArray.forEach(ship => {
+//         if (ship.id === subShip.id) {
+
+//         }
+//     });
+// }
 
 
 // выбирает корабль
