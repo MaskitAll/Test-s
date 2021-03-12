@@ -5,6 +5,8 @@ var canvasEnemy_BS = document.getElementById("sea-battle-enemy_canvas"),
 var canvasShips_BS = document.getElementById("sea-battle-ship_canvas"),
 	ctxShips_BS     = canvasShips_BS.getContext('2d');
 
+var startBtn_bs = document.getElementById("sea-battle-start");
+
 
 
     canvasPlayer_BS.width = Math.floor(canvasPlayer_BS.offsetWidth);
@@ -35,7 +37,7 @@ class Ships{
         this.rotate = rotate;
         this.length = length;
         
-        this.id = "x" + this.x + "y" + this.y + this.rotate + this.length;
+        this.id = "x" + this.x + "y" + this.y + "r" + this.rotate + "l" + this.length;
 
         if(rotate === "v"){
             this.width = 1;
@@ -100,7 +102,7 @@ class Ships{
     class MapShip extends Map{
         constructor(width = 10, height = 5, indent = 5 ){
             super(width, height, indent);
-            this.colorArray = ["#fff", "#000", "#fdd"];
+            this.colorArray = ["#fff", "#000", "#aaf", "#faa"];
         }
 
         // Возможность дополнить !!!!
@@ -216,7 +218,7 @@ class Ships{
     
             // ИЗМЕНИТЬ ВОЗВРАТ !!!
             // return new Ships(startX, startY, rotate, len);
-            return "x" + startX + "y" + startY + rotate + len;
+            return "x" + startX + "y" + startY + "r"  + rotate + "l"  + len;
         }
 
         raiseShip(ship){
@@ -235,7 +237,16 @@ class Ships{
             }
         }
 
-        
+        shot(x, y){
+            if(this.cellMap[x][y].value === 0){
+                this.cellMap[x][y].value = 2;
+            }
+            if(this.cellMap[x][y].value === 1){
+                this.cellMap[x][y].value = 3;
+            }
+            // проверка на смерть и попадания
+        }
+
     }
 
 
@@ -271,12 +282,7 @@ var currentShip = new Ships();
 
 // Загрузка начальной карты
 function startGame(){
-    mapShips.fillMap();
-    console.log("start");
 
-    shipArray.forEach(ship => {
-        mapShips.setShip(ship);
-    });
 }
 
 function findShipInArray(shipID){
@@ -287,6 +293,27 @@ function findShipInArray(shipID){
     }; 
     return false;
 }
+
+function returnShipInMap(ship){
+    if(ship.rotate != ship.id.substring(ship.id.indexOf("r") + 1, ship.id.indexOf("l"))){
+        mapShips.raiseShip(currentShip);
+        currentShip.rotateShip();  
+      }
+    mapShips.moveShip(ship, +ship.id.substring(1, ship.id.indexOf("y")), +ship.id.substring(ship.id.indexOf("y") + 1, ship.id.indexOf("r")));
+}
+
+// function randomMoveShips(map){
+//     for(var i = 0; i < map.cellMap.length; ++i){
+//         for(var j = 0; j < map.cellMap[i].length; ++j){
+
+//             if(map.cellMap[x][y].value != 0){
+//                 if(map.isShip(x, y)){
+                        
+//                 }
+//             }
+//         }
+//     }
+// }
 
 // при нажатии на пробел currentShip меняет ротацию 
 document.onkeydown = function(event){
@@ -313,6 +340,11 @@ canvasShips_BS.addEventListener('mousedown', function (e) {
     y = Math.floor(y / (canvasShips_BS.height - mapShips.indent * 2) * mapShips.height);
 
     // изменить в зависимости от логики
+    if(mapShips.cellMap[x][y].value != 0){
+    if(currentShip.length != 0){
+        returnShipInMap(currentShip);
+    }
+    
     currentShip = findShipInArray(mapShips.isShip(x, y));
 
     if(currentShip === false){return;}
@@ -320,8 +352,10 @@ canvasShips_BS.addEventListener('mousedown', function (e) {
     for(var i = 0; i < shipArray.length; ++i){
         if (shipArray[i].x === currentShip.x && shipArray[i].y === currentShip.y) {
             mapShips.moveShip(currentShip, 15, 1);
+            // shipArray.splice(i, 1);
         }
     }
+}
     drawMap(canvasShips_BS, ctxShips_BS, mapShips);
 });
 
@@ -336,21 +370,42 @@ canvasPlayer_BS.addEventListener('mousedown', function (e) {
     y = Math.floor(y / (canvasPlayer_BS.height - mapPlayer.indent * 2) * mapPlayer.height);
 
     // изменить в зависимости от логики
+    if(startBtn_bs.disabled){
+
     if(mapPlayer.canSetShip(currentShip, x, y)){
         mapShips.raiseShip(currentShip);    // удаляет корабль из окна выбора
         currentShip.putShip(x, y);          // меняет координаты выбранного корабля под текущие
         mapPlayer.setShip(currentShip);     // выставляет корабль на поле игрока
         
         // ИЗМЕНИТЬ!!!
+        for(var i = 0; i < shipArray.length; ++i){
+            if(shipArray[i].id === currentShip.id){
+                shipArray.splice(i, 1);
+            }
+            if(shipArray.length === 0){
+                startBtn_bs.classList.remove("btn-disabled");
+                startBtn_bs.removeAttribute("disabled");
+            }
+        }
         currentShip = new Ships();          // удаляет корабль выбора
+    }
+    } else{
+        mapPlayer.shot(x, y);
     }
     drawMap(canvasPlayer_BS, ctxPlayer_BS, mapPlayer);
     drawMap(canvasShips_BS, ctxShips_BS, mapShips);
 });
 
+startBtn_bs.addEventListener('click', () => {
+    startGame();
+});
 
+mapShips.fillMap();
+console.log("start");
 
-startGame();
+shipArray.forEach(ship => {
+    mapShips.setShip(ship);
+});
 
 drawMap(canvasPlayer_BS, ctxPlayer_BS, mapPlayer);
 drawMap(canvasEnemy_BS, ctxEnemy_BS, mapEnemy);
