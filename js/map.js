@@ -150,3 +150,6 @@ function drawMap(canvas, ctx, m){
         }
     }
 };
+
+
+

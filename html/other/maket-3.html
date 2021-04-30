@@ -214,9 +214,38 @@
 		<button id="GTN-reset" class="btn">Начать заново</button>
 
 		<div id="GTN-result_message">Подберите число, которое загадал компьютер</div>
-
-
 	</div>
+
+
+	<!-- Math Tests  -->
+	<div id = "math_test" class="_block _box-insetM _light">
+		<h2 style="margin-bottom: 1rem;">Задачи по математике</h2>
+		<form action="" style="flex-direction: row;" >
+			<label><input name="math_level" type="radio" value="easy" onclick="changeRadioBox()" checked>Легкий</label>
+			<label><input name="math_level" type="radio" value="medium" onclick="changeRadioBox()">Средний</label>
+			<label><input name="math_level" type="radio" value="hard" onclick="changeRadioBox()">Сложный</label>
+		</form> 
+
+		<div class="math_container">
+			<label id = "math_task" for="math_text">23 * 42 = </label>
+			<input type="text" id = "math_text">
+		</div>
+	</div>
+
+	<!-- Math Tests  -->
+	<div id = "music" class="_block _box-insetM _light">
+		<div class="" style="display: flex; flex-direction: column;padding: .5rem;">
+			<span class="preTab">Частота:</span>
+			<input type="range" id="frequency" oninput="changeFrequency()" min="16.35" max="7902.13" value="440" style="margin-top: 1rem;">
+			
+			<span class="preTab" style="margin-top: 1rem;">Задержка:</span>
+			<input type="range" id="delay" oninput="changeDelay()" min="0" max="1000" value="500" style="margin-top: 1rem;">
+
+		</div>
+		<button onclick="goMusic()">!!!</button>
+		<button onclick="remember()">$$$</button>
+	</div>
+
 
 
 
@@ -358,5 +387,7 @@
 <!-- <script src="/js/sea-battle-2.js"></script> -->
 <script src="/js/sea-battle-3.js"></script>
 <script src="/js/slider.js"></script>
+<script src="/js/math-brif.js"></script>
+<script src="/js/music.js"></script>
 
 </body>
