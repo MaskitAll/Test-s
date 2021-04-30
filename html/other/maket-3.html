@@ -234,6 +234,7 @@
 
 	<!-- Math Tests  -->
 	<div id = "music" class="_block _box-insetM _light">
+		<h2 style="margin-bottom: 1rem;">Музыкальная шкатулка</h2>
 		<div class="" style="display: flex; flex-direction: column;padding: .5rem;">
 			<span id = "frequency_label" class="">Частота: 440Гц</span>
 			<input type="range" id="frequency" oninput="changeFrequency()" min="16.35" max="7902.13" value="440" style="margin-top: 1rem;">
@@ -242,10 +243,10 @@
 			<input type="range" id="delay" oninput="changeDelay()" min="0" max="1000" value="500" style="margin-top: 1rem;">
 
 			<span id = "gain_label" class="" style="margin-top: 1rem;">Усиление: 0</span>
-			<input type="range" id="gain" oninput="changeGain()" min="0" max="1000" value="500" style="margin-top: 1rem;">
+			<input type="range" id="gain" oninput="changeGain()" min="0" max="10" value="0" step=".01" style="margin-top: 1rem;">
 		</div>
-		<button onclick="goMusic()">!!!</button>
-		<button onclick="remember()">$$$</button>
+		<button onclick="goMusic()">Воспроизвести</button>
+		<button onclick="remember()">Запомнить звук</button>
 	</div>
 
 

@@ -26,15 +26,15 @@ function Ding( fr, st, ga){
     oscillator.connect(audioContext.destination);
     
     // Создать узел усилителя внутри контекста
-    gain = audioContext.createGain()
+    myGain = audioContext.createGain()
     // Присоединить его к цепи
-    oscillator.connect(gain);
+    oscillator.connect(myGain);
     // Присоединить усилитель к назначению
-    gain.connect(audioContext.destination);
+    myGain.connect(audioContext.destination);
 
-    gain.gain.value = ga;
-    // gain.gain.setValueAtTime(100, now);
-    // gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+    myGain.gain.value = ga;
+    // myGain.gain.setValueAtTime(100, now);
+    // myGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
 
     // Запустить осциллятор;
     oscillator.start(now);
@@ -61,7 +61,9 @@ function changeGain(){
 
 function goMusic(){
     for(var i = 0; i < frArr.length; ++i){
-        Ding(fr,delayValue, gainValue);
+        // console.log(frArr)
+        Ding(frArr[i],delayArr[i], gainValue);
+        setInterval(() => { }, 100);
     }
 }
 
