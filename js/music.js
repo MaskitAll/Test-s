@@ -39,15 +39,14 @@ function Ding( fr, st){
 }
 
 function changeFrequency(){
-    console.log("frequency = " + fr)
-
+    document.querySelector("#frequency_label").innerHTML = "Частота: " + frequency.value + "Гц";
     fr = frequency.value;
     Ding(fr, delayValue);
 
 }
 
 function changeDelay(){
-    console.log("delay = " + delayValue)
+    document.querySelector("#delay_label").innerHTML = "Задержка: " + delay.value + "мс";
 
     delayValue = delay.value;
     Ding(fr, delayValue);

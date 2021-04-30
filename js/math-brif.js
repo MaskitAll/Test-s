@@ -3,6 +3,7 @@ var easy = 1,
     hard = 5;
 
 var lvl = 0;
+var answer = 0;
 
 var taskArr = new Array;    // массив чисел
 var singsArr = new Array;   // массив знаков
@@ -10,6 +11,7 @@ var mathRezult = 0;         // результат выражения
 
 var mathTest = document.querySelector("#math_test");
 var mathTask = document.querySelector("#math_task");
+var mathText = document.querySelector("#math_text");
 
 
 function changeRadioBox(){
@@ -40,7 +42,7 @@ function createTask(){
     taskArr.push(random(0, 20));
 
     mathTask.innerHTML = writeTask(taskArr, singsArr) + " = ";
-    console.log(findRezult(taskArr, singsArr));
+    answer = findRezult(taskArr, singsArr);
 }
 
 
@@ -99,6 +101,19 @@ function writeTask(tasks, signs){
     W += tasks[tasks.length - 1];
 
     return W;
+}
+
+function clear(){
+    mathText.value = "";
+    changeRadioBox();
+}
+
+function checkAnswer(){
+    if(parseInt(mathText.value) === answer){
+        console.log("Graz");
+        clear();
+    }
+   
 }
 
 changeRadioBox();
