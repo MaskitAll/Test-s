@@ -61,6 +61,7 @@ var isSes = true;
 					isSes = true;
 					stime = Bre.textContent * 60;
 				} else {
+					Ding(400, 50, 10);					// DING!!!
 					isSes = false;
 					stime = Ses.textContent * 60;
 				}
@@ -75,6 +76,7 @@ var isSes = true;
 		if(stime>0){
 			stime--;
 		}
+		
 		stom(stime);
 	}
 

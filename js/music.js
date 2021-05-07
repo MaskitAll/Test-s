@@ -63,7 +63,7 @@ function goMusic(){
     for(var i = 0; i < frArr.length; ++i){
         // console.log(frArr)
         Ding(frArr[i],delayArr[i], gainValue);
-        setInterval(() => { }, 100);
+        setInterval(() => { }, 1000);
     }
 }
 
