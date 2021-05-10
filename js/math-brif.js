@@ -26,14 +26,15 @@ function changeRadioBox(){
             };  
         }
     };
-    // console.log(lvl);
     createTask();
 };
 
 function createTask(){
-    
+
+    // clear arrays
     taskArr.splice(0, taskArr.length);
     singsArr.splice(0, singsArr.length);
+
 
     taskArr.push(random(0, 20));
 
@@ -56,6 +57,19 @@ function createTask(){
     //answer = eval(writeTask(taskArr, singsArr));           //не рекомендуется
     console.log(answer)
 }
+
+// function createTask(){
+
+//     // clear arrays
+//     taskArr.splice(0, taskArr.length);
+//     singsArr.splice(0, singsArr.length);
+
+
+ 
+//     mathTask.innerHTML = writeTask(taskArr, singsArr) + " = ";
+//     answer = findRezult(taskArr, singsArr);
+// }
+
 
 
 

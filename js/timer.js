@@ -61,10 +61,10 @@ var isSes = true;
 					isSes = true;
 					stime = Bre.textContent * 60;
 				} else {
-					Ding(400, 50, 10);					// DING!!!
 					isSes = false;
 					stime = Ses.textContent * 60;
 				}
+				Ding(400, 50, 10);					// DING!!!
 			}
 			tic();
 			timerid = setTimeout(timer, 1000, true);
