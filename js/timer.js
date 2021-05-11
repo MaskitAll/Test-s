@@ -72,7 +72,7 @@ var isSes = false;								//это сессия или отдых
 				Ding(400, 50, 10);					// DING!!!
 			}
 			tic();
-			timerid = setTimeout(timer, 100, true);
+			timerid = setTimeout(timer, 1000, true);
 		}
 		else{stop();}
 	}
