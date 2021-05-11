@@ -7,7 +7,6 @@
 
 <!-- Подключение стилей	-->
     <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/test.css">
     <link rel="stylesheet" href="/css/main.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,8 +15,6 @@
 </head>
 <body>
 <div id="main">
-
-
 
 
     <!-- Header -->
@@ -87,13 +84,10 @@
                             Задача: <a :href = "page.link" v-on:click.prevent="showCard(page.id, htmlWithoutStyles)">{{ page.name }}</a>
                         </div>
                         <div class = "test" @click="rotate" v-if="page.isShow" >
-
                             <div :maskit-include-html="page.task"  class = "card__side front" :class="page.dificult" v-if="page.isShow">
-
-                            Задача не найдена</div>
-
-                            <div :maskit-include-html="page.decision"  class = "card__side decision" :class="page.dificult" v-if="page.isShow">Задача не решена</div>
-
+                                Задача не найдена</div>
+                            <div :maskit-include-html="page.decision"  class = "card__side decision" :class="page.dificult" v-if="page.isShow">
+                                Задача не решена</div>
                         </div>
                     </li>
                 </ol>
