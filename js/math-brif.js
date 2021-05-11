@@ -35,7 +35,6 @@ function createTask(){
     taskArr.splice(0, taskArr.length);
     singsArr.splice(0, singsArr.length);
 
-
     taskArr.push(random(0, 20));
 
     for(var i = 0; i < lvl; ++i){
@@ -44,32 +43,19 @@ function createTask(){
         // проверка на правильное деление
         if(singsArr[i] === 1){
             var ch = divideCheck(taskArr[i], taskArr[i + 1]);
-            // console.log("-" + taskArr)
-            if(ch === 1){taskArr[i + 1]++;}
-            // if(ch === 2){taskArr[i] += taskArr[i + 1] - (taskArr[i] % taskArr[i + 1]);}
-            // console.log("+" + taskArr)
+            if(ch === 1){taskArr[i + 1]++;}                 //если делитель = 0
+            if(ch === 2){                                   //если есть остаток
+                while (taskArr[i] % taskArr[i + 1] != 0) {
+                    taskArr[i + 1] -= 1;                    
+                }
+            }
         }
     }
-
-    // console.log(taskArr);   
     mathTask.innerHTML = writeTask(taskArr, singsArr) + " = ";
     answer = findRezult(taskArr, singsArr);
     //answer = eval(writeTask(taskArr, singsArr));           //не рекомендуется
     console.log(answer)
 }
-
-// function createTask(){
-
-//     // clear arrays
-//     taskArr.splice(0, taskArr.length);
-//     singsArr.splice(0, singsArr.length);
-
-
- 
-//     mathTask.innerHTML = writeTask(taskArr, singsArr) + " = ";
-//     answer = findRezult(taskArr, singsArr);
-// }
-
 
 
 
@@ -82,6 +68,7 @@ function findDesigion(a, b, sign){
     };
 }
 
+// Функция поиска правильного порядка вычисления 
 function myMin(Arr){
     for(var i = 0; i < Arr.length; ++i){
         if(Arr[i] === 0 || Arr[i] === 1){
@@ -93,21 +80,12 @@ function myMin(Arr){
 
 function findRezult(tasks, sings){
     var j;
-    // console.log("Начальный массив");
-    // console.log(tasks);
-    // console.log(sings);
-    // console.log("***");
-
     while(sings.length != 0){
         j = myMin(sings);
         if(sings.length != 0){
             tasks.splice(j, 2, findDesigion(tasks[j], tasks[j + 1], sings[j]));
             sings.splice(j, 1);
-        }    
-        // console.log("singsArr");
-        // console.log(sings);
-        // console.log("taskArr");
-        // console.log(tasks);
+        }
     }
     return taskArr[0];
 }
@@ -158,9 +136,6 @@ function checkAnswer(){
         console.log("Graz");
         clear();
     }
-   
 }
 
 changeRadioBox();
-
-
